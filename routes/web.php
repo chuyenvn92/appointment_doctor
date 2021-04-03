@@ -71,8 +71,6 @@ Route::group(['middleware'=>['auth','doctor']],function(){
 
 });
 
-// Route::post('/api/doctors','FrontendController@getDoctors');
-// Route::get('/api/doctors/today','FrontendController@doctorToday');
 
 
 

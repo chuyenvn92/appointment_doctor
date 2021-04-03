@@ -17,10 +17,10 @@ class FrontendController extends Controller
     	date_default_timezone_set('Asia/Ho_Chi_Minh');
         if(request('date')){
             $doctors = $this->findDoctorsBasedOnDate(request('date'));
-            return view('__welcome',compact('doctors'));
+            return view('welcome',compact('doctors'));
         }
-        $doctors = Appointment::where('date',date('d-m-Y'))->get();
-    	return view('__welcome',compact('doctors'));
+        $doctors = Appointment::where('date',date('Y-m-d'))->get();
+    	return view('welcome',compact('doctors'));
     }
 
     public function show($doctorId,$date)
