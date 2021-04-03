@@ -43,11 +43,10 @@ class FrontendController extends Controller
     public function store(Request $request)
     {
         date_default_timezone_set('Asia/Ho_Chi_Minh');
-        
         $request->validate(['time'=>'required']);
         $check=$this->checkBookingTimeInterval();
         if($check){
-            return redirect()->back()->with('message','You have already bookedn an appointment.Please wait to make next appointment');
+            return redirect()->back()->with('message','Bạn đã đặt lịch hẹn khám cho ngày này rồi. Vui lòng đợi lịch hẹn khám tiếp theo nhé !!!');
         }
    
         
@@ -72,13 +71,13 @@ class FrontendController extends Controller
 
         ];
         try{
-           // \Mail::to(auth()->user()->email)->send(new AppointmentMail($mailData));
+           \Mail::to(auth()->user()->email)->send(new AppointmentMail($mailData));
 
         }catch(\Exception $e){
 
         }
 
-        return redirect()->back()->with('message','Your appointment was booked');
+        return redirect()->back()->with('message','Đặt lịch hẹn khám thành công');
 
 
     }
