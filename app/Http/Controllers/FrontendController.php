@@ -14,13 +14,13 @@ class FrontendController extends Controller
     
     public function index()
     {
-    	date_default_timezone_set('Australia/Melbourne');
+    	date_default_timezone_set('Asia/Ho_Chi_Minh');
         if(request('date')){
             $doctors = $this->findDoctorsBasedOnDate(request('date'));
-            return view('welcome',compact('doctors'));
+            return view('__welcome',compact('doctors'));
         }
-        $doctors = Appointment::where('date',date('Y-m-d'))->get();
-    	return view('welcome',compact('doctors'));
+        $doctors = Appointment::where('date',date('d-m-Y'))->get();
+    	return view('__welcome',compact('doctors'));
     }
 
     public function show($doctorId,$date)
@@ -42,7 +42,7 @@ class FrontendController extends Controller
 
     public function store(Request $request)
     {
-        date_default_timezone_set('Australia/Melbourne');
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
         
         $request->validate(['time'=>'required']);
         $check=$this->checkBookingTimeInterval();
