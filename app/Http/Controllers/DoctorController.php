@@ -44,7 +44,7 @@ class DoctorController extends Controller
         $data['password'] = bcrypt($request->password);
         User::create($data);
 
-        return redirect()->back()->with('message','Doctor added successfully');
+        return redirect()->back()->with('message','Thêm bác sĩ thành công');
 
 
         
@@ -99,7 +99,7 @@ class DoctorController extends Controller
             $data['password'] = $userPassword;
         }
          $user->update($data);
-        return redirect()->route('doctor.index')->with('message','Doctor updated successfully');
+        return redirect()->route('doctor.index')->with('message','Cập nhật thông tin bác sĩ thành công');
 
     }
 
@@ -119,7 +119,7 @@ class DoctorController extends Controller
        if($userDelete){
         unlink(public_path('images/'.$user->image));
        }
-        return redirect()->route('doctor.index')->with('message','Doctor deleted successfully');
+        return redirect()->route('doctor.index')->with('message','Xoá bác sĩ thành công');
 
     }
 

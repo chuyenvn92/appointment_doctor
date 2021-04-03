@@ -54,7 +54,7 @@ class AppointmentController extends Controller
                 //'stauts'=>0
             ]);
         }
-        return redirect()->back()->with('message','Appointment created for'. $request->date);
+        return redirect()->back()->with('message','Tạo thành công lịch hẹn khám cho ngày '. $request->date);
        
     }
 
@@ -108,12 +108,11 @@ class AppointmentController extends Controller
         $date = $request->date;
         $appointment= Appointment::where('date',$date)->where('user_id',auth()->user()->id)->first();
         if(!$appointment){
-            return redirect()->to('/appointment')->with('errmessage','Appointment time not available for this date');
+            return redirect()->to('/appointment')->with('errmessage','Không có lịch khám cho ngày bạn chọn');
         }
         $appointmentId = $appointment->id;
         $times = Time::where('appointment_id',$appointmentId)->get();
-
-       
+      
         return view('admin.appointment.index',compact('times','appointmentId','date'));
     }
 
@@ -127,7 +126,7 @@ class AppointmentController extends Controller
                 'status'=>0
             ]);
         }
-        return redirect()->route('appointment.index')->with('message','Appointment time updated!!');
+        return redirect()->route('appointment.index')->with('message','Lịch khám đã được cập nhật!!');
     }
 
 
