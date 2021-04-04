@@ -19,9 +19,13 @@
                 <p>– Cam kết chất lượng và dịch vụ</p>
 
                 <p>– Lắng nghe, tận tâm, chu đáo</p>
+                
                 <div class="mt-5">
-                    <a href="{{ url('/register') }}"> <button class="btn btn-success">Đăng kí bệnh nhân</button></a>
+                    @if (Auth::check())
+                @else
+                    <a href="{{ url('/register') }}"> <button class="btn btn-success">Đăng kí</button></a>
                     <a href="{{ url('/login') }}"><button class="btn btn-secondary">Đăng nhập</button></a>
+                @endif
                 </div>
             </div>
         </div>

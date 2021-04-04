@@ -10,6 +10,7 @@
                     :format="customDate"
                     v-model="time"
                     :inline="true"
+                    :language="vi"
                 ></datepicker>
             </div>
             <div class="card mt-5">
@@ -74,10 +75,12 @@
 import datepicker from "vuejs-datepicker";
 import moment from "moment";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
+import { vi } from 'vuejs-datepicker/dist/locale';
 export default {
     data() {
         return {
             time: "",
+            vi: vi,
             doctors: [],
             color: '#51cc18',
             size: '20px',

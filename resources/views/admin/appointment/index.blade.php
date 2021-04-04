@@ -241,6 +241,14 @@
         </tbody>
     </table>
     @endif
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#datepicker").datetimepicker({
+                format: 'DD-MM-YYYY'
+            })
+        })
+
+    </script>
     <style type="text/css">
         input[type="checkbox"] {
             zoom: 1.1;

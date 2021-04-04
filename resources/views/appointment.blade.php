@@ -61,11 +61,7 @@
                             <a href="{{ url('/register') }}"> <button class="btn btn-success">Đăng kí</button></a>
                             <a href="{{ url('/login') }}"><button class="btn btn-secondary">Đăng nhập</button></a>
                         @endif
-
-
                     </div>
-
-
                 </form>
 
             </div>
