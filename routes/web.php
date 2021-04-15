@@ -38,7 +38,7 @@ Route::group(['middleware'=>['auth','patient']],function(){
 });
 
 
-Route::get('/dashboard','DashboardController@index');
+Route::get('/dashboard','DashboardController@index')->name('dash');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

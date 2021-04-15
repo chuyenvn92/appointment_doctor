@@ -3,31 +3,32 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <img src="/banner/online-medicine-concept_160901-152.jpg" class="img-fluid" style="border:1px solid #ccc;">
-            </div>
-            <div class="col-md-6">
-                <h2>Tạo tài khản và đặt lịch hẹn khám bác sĩ!!!</h2>
-                <p>– Tiết kiệm thời gian và chi phí</p>
-
-                <p>– Chẩn đoán đúng bệnh, nhanh chóng bởi đội ngũ chuyên gia bác sĩ đầu ngành</p>
-
-                <p>– Chất lượng dịch vụ tận tình, chu đáo trước, trong và sau khi khám</p>
-
-                <p>– Trả kết quả ngay trong ngày</p>
-
-                <p>– Cam kết chất lượng và dịch vụ</p>
-
-                <p>– Lắng nghe, tận tâm, chu đáo</p>
-                
-                <div class="mt-5">
-                    @if (Auth::check())
-                @else
-                    <a href="{{ url('/register') }}"> <button class="btn btn-success">Đăng kí</button></a>
-                    <a href="{{ url('/login') }}"><button class="btn btn-secondary">Đăng nhập</button></a>
-                @endif
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="/banner/slider_1.jpeg" alt="First slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="/banner/slider_2.jpeg" alt="Second slide">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="/banner/slider_3.jpeg" alt="Third slide">
+                  </div>
                 </div>
-            </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
         </div>
         <hr>
         <!--date picker component-->

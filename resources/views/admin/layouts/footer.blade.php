@@ -26,6 +26,14 @@
  <script src="{{ asset('template/plugins/moment/moment.js') }}"></script>
  <script src="{{ asset('template/plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js') }}">
  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $("#datepicker").datetimepicker({
+            format: 'YYYY-MM-DD'
+        })
+    })
+
+</script>
  <script src="{{ asset('template/plugins/d3/dist/d3.min.js') }}"></script>
  <script src="{{ asset('template/plugins/c3/c3.min.js') }}"></script>
  <script src="{{ asset('template/js/tables.js') }}"></script>
