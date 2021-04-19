@@ -30,6 +30,7 @@
                 </a>
               </div>
         </div>
+        
         <hr>
         <!--date picker component-->
         <find-doctor></find-doctor>

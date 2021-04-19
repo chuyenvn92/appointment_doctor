@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Đặt lịch khám</title>
+    <title>Quản trị đặt lịch</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,16 +41,20 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <strong>{{ Auth()->user()->name }}</strong>
+                                @if (auth()->check() && auth()->user()->role->name === 'admin')
+
+                                    <strong>Xin chào Quản trị viên: {{ Auth()->user()->name }}</strong>
+
+                                @else
+                                    <strong>Xin chào Bác sĩ: {{ Auth()->user()->name }}</strong>
+
+                                @endif
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    <i class="ik ik-power dropdown-icon"></i> {{ __('Logout') }}
+                                    <i class="ik ik-power dropdown-icon"></i> {{ __('Đăng xuất') }}
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                </form>
                             </div>
                         </div>
 

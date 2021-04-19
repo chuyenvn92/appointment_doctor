@@ -20,11 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('find-doctor', require('./components/FindDoctor.vue').default);
-
-
-
-
-
+Vue.component('add-btn', require('./components/AddBtn.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -39,7 +39,7 @@ class DepartmentController extends Controller
             'department'=>'required'
         ]);
         Department::create($request->all());
-        return redirect()->back()->with('message','Department created');
+        return redirect()->back()->with('message','Thêm mới chuyên khoa thành công');
     }
 
     /**
@@ -80,7 +80,7 @@ class DepartmentController extends Controller
         $department = Department::find($id);
         $department->department = $request->department;
         $department->save();
-        return redirect()->route('department.index')->with('message','Department updated');
+        return redirect()->route('department.index')->with('message','Cập nhật chuyên khoa thành công');
     }
 
     /**
@@ -93,6 +93,6 @@ class DepartmentController extends Controller
     {
         $department = Department::find($id);
         $department->delete();
-        return redirect()->route('department.index')->with('message','Department deleted');
+        return redirect()->route('department.index')->with('message','Xóa chuyên khoa thành công');
     }
 }

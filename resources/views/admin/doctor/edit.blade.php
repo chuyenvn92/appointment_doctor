@@ -78,10 +78,8 @@
                             <div class="col-lg-6">
                                 <label for="">Giới tính</label>
                                 <select class="form-control @error('gender') is-invalid @enderror" name="gender">
-                                    @foreach (['male', 'female'] as $gender)
-                                        <option value="{{ $gender }}" @if ($user->gender == $gender) selected @endif>
-                                            {{ $gender }}</option>
-                                    @endforeach
+                                    <option value="1" @if ($user->gender == 1) selected @endif>Nam</option>
+                                    <option value="0" @if ($user->gender == 0) selected @endif>Nữ</option>
                                 </select>
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
@@ -167,11 +165,8 @@
                             <div class="col-md-6">
                                 <label>Vai trò</label>
                                 <select name="role_id" class="form-control @error('role_id') is-invalid @enderror">
-                                    <option value="">Vui lòng chọn</option>
-                                    @foreach (App\Role::where('name', '!=', 'patient')->get() as $role)
-                                        <option value="{{ $role->id }}" @if ($user->role_id == $role->id) selected @endif>
-                                            {{ $role->name }}</option>
-                                    @endforeach
+                                    <option value="1" @if ($user->role_id == 1) selected @endif>Bác sĩ</option>
+                                    <option value="2" @if ($user->role_id == 2) selected @endif>Quản trị viên</option>
                                 </select>
                                 @error('role_id')
                                     <span class="invalid-feedback" role="alert">

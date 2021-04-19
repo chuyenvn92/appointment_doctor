@@ -80,8 +80,8 @@
                                 <label for="">Giới tính</label>
                                 <select class="form-control @error('gender') is-invalid @enderror" name="gender">
                                     <option value="">Vui lòng chọn</option>
-                                    <option value="male">Nam</option>
-                                    <option value="female">Nữ</option>
+                                    <option value="1">Nam</option>
+                                    <option value="0">Nữ</option>
                                 </select>
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
@@ -121,7 +121,7 @@
                                 <div class="form-group">
                                     <label for="">Chuyên khoa</label>
                                     <select name="department" class="form-control">
-                                        <option value="">vui lòng chọn</option>
+                                        <option value="">Vui lòng chọn</option>
                                         @foreach (App\Department::all() as $d)
                                             <option value="{{ $d->department }}">{{ $d->department }}</option>
                                         @endforeach
@@ -171,7 +171,11 @@
                                 <select name="role_id" class="form-control @error('role_id') is-invalid @enderror">
                                     <option value="">Vui lòng chọn</option>
                                     @foreach (App\Role::where('name', '!=', 'patient')->get() as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @if ($role->name == 'admin')
+                                        <option value="1">Bác sĩ</option>
+                                        @else 
+                                        <option value="2">Quản trị hệ thống</option>
+                                        @endif
                                     @endforeach
 
                                 </select>
@@ -185,7 +189,7 @@
                         <div class="form-group">
                             <label for="exampleTextarea1">Thông tin</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" id="exampleTextarea1"
-                                rows="4" name="description">{{ old('description') }} </textarea>
+                                rows="4" name="description">{{ old('description') }}</textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

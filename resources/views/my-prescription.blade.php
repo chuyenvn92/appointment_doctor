@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">My prescriptions</div>
+                <div class="card-header">Đơn thuốc của bạn</div>
 
                 <div class="card-body">
                  
@@ -13,13 +13,13 @@
                       <thead>
                         <tr>
                           
-                          <th scope="col">Date</th>
-                          <th scope="col">Doctor</th>
-                          <th scope="col">Disease</th>
-                          <th scope="col">Symptoms</th>
-                          <th scope="col">medicine</th>
-                          <th scope="col">procedure to use medicine</th>
-                          <th scope="col">Doctor Feedback</th>
+                          <th scope="col">Ngày khám</th>
+                          <th scope="col">Bác sĩ</th>
+                          <th scope="col">Tên bệnh</th>
+                          <th scope="col">Triệu chứng</th>
+                          <th scope="col">Thuốc</th>
+                          <th scope="col">Cách sử dụng</th>
+                          <th scope="col">Ghi chú của bác sĩ</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -35,7 +35,7 @@
                           <td>{{$prescription->feedback}}</td>
                         </tr>
                         @empty
-                        <td>You have no prescriptions</td>
+                        <td>Bạn chưa có đơn thuốc nào!!!</td>
                         @endforelse
                        
                       </tbody>

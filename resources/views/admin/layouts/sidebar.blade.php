@@ -21,7 +21,7 @@
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">
                                 <a href="{{ route('department.create') }}" class="menu-item">Thêm mới</a>
-                                <a href="{{ route('department.index') }}" class="menu-item">Xem danh sách</a>
+                                <a href="{{ route('department.index') }}" class="menu-item">Danh sách</a>
 
                             </div>
                         </div>
@@ -33,40 +33,39 @@
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">
                                 <a href="{{ route('doctor.create') }}" class="menu-item">Thêm mới</a>
-                                <a href="{{ route('doctor.index') }}" class="menu-item">Xem danh sách</a>
+                                <a href="{{ route('doctor.index') }}" class="menu-item">Danh sách</a>
 
                             </div>
                         </div>
                     @endif
                     @if (auth()->check() && auth()->user()->role->name === 'doctor')
                         <div class="nav-item has-sub">
-                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Lịch khám</span> <span
+                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Lịch hẹn khám</span> <span
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">
                                 <a href="{{ route('appointment.create') }}" class="menu-item">Thêm mới</a>
-                                <a href="{{ route('appointment.index') }}" class="menu-item">Kiểm tra lịch khám</a>
-
+                                <a href="{{ route('appointment.index') }}" class="menu-item">Danh sách lịch hẹn</a>
                             </div>
                         </div>
                     @endif
 
                     @if (auth()->check() && auth()->user()->role->name === 'doctor')
                         <div class="nav-item has-sub">
-                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Bệnh nhân</span> <span
+                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Lịch khám và kê đơn</span> <span
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">
-                                <a href="{{ route('patients.today') }}" class="menu-item">Bệnh nhân (trong ngày)</a>
-                                <a href="{{ route('prescribed.patients') }}" class="menu-item">Tất cả bệnh nhân</a>
+                                <a href="{{ route('patients.today') }}" class="menu-item">Lịch khám trong ngày</a>
+                                <a href="{{ route('prescribed.patients') }}" class="menu-item">Bệnh nhân đã khám</a>
                             </div>
                         </div>
                     @endif
                     @if (auth()->check() && auth()->user()->role->name === 'admin')
                         <div class="nav-item has-sub">
-                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Lịch hẹn bệnh nhân</span>
+                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Thông tin bệnh nhân</span>
                                 <span class="badge badge-danger"></span></a>
                             <div class="submenu-content">
-                                <a href="{{ route('patient') }}" class="menu-item">Lịch hẹn trong ngày</a>
-                                <a href="{{ route('all.appointments') }}" class="menu-item">Tất cả lịch hẹn</a>
+                                <a href="{{ route('patient') }}" class="menu-item">Bệnh nhân</a>
+                                <a href="{{ route('all.appointments') }}" class="menu-item">Danh sách đã khám</a>
 
                             </div>
                         </div>
@@ -82,7 +81,6 @@
                             @csrf
                         </form>
                     </div>
-
 
                 </nav>
             </div>

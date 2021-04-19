@@ -8,7 +8,7 @@
                 <div class="card-header">Xin chào</div>
 
                 <div class="card-body">
-                  Bạn đã đăng nhập vào hệ thống với tư cách là : 
+                  Bạn đã đăng nhập với tên người dùng là :
                   {{Auth()->user()->name}}
                 </div>
             </div>

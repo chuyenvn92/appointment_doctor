@@ -8,8 +8,8 @@
             <div class="page-header-title">
                 <i class="ik ik-command bg-blue"></i>
                 <div class="d-inline">
-                    <h5>Department</h5>
-                    <span>add department</span>
+                    <h5>Chuyên khoa</h5>
+                    <span>Thêm chuyên khoa</span>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item">
                     <a href="../index.html"><i class="ik ik-home"></i></a>
                 </li>
-                <li class="breadcrumb-item"><a href="#">Department</a></li>
+                <li class="breadcrumb-item"><a href="#">Chuyên khoa</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Create</li>
             </ol>
         </nav>
@@ -36,15 +36,15 @@
         @endif
        
 	<div class="card">
-	<div class="card-header"><h3>Add Department</h3></div>
+	<div class="card-header"><h3>Thêm chuyên khoa</h3></div>
 	<div class="card-body">
 		<form class="forms-sample" action="{{route('department.store')}}" method="post" >@csrf
 			<div class="row">
 				<div class="col-lg-6">
                     <div class="form-group">
 
-					<label for="">Department name</label>
-					<input type="text" name="department" class="form-control @error('department') is-invalid @enderror" placeholder="department name" value="                   {{old('department')}}">
+					<label for="">Tên chuyên khoa</label>
+					<input type="text" name="department" class="form-control @error('department') is-invalid @enderror" placeholder="tên chuyên khoa" value="{{old('department')}}">
                     @error('department')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -55,7 +55,7 @@
             <div class="form-group">
 
 				
-              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <button type="submit" class="btn btn-primary mr-2">Thêm mới</button>
             </div>
         </div>
            

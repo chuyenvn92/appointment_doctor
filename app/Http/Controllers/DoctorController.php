@@ -39,12 +39,13 @@ class DoctorController extends Controller
         $this->validateStore($request);
         $data = $request->all();
         $name = (new User)->userAvatar($request);
+        $data['gender'] = $request->gender;
 
         $data['image'] = $name;
         $data['password'] = bcrypt($request->password);
         User::create($data);
 
-        return redirect()->back()->with('message','Thêm bác sĩ thành công');
+        return redirect()->back()->with('message','Thêm người dùng thành công');
 
 
         
@@ -99,7 +100,7 @@ class DoctorController extends Controller
             $data['password'] = $userPassword;
         }
          $user->update($data);
-        return redirect()->route('doctor.index')->with('message','Cập nhật thông tin bác sĩ thành công');
+        return redirect()->back()->with('message','Cập nhật thông tin thành công');
 
     }
 
@@ -119,7 +120,7 @@ class DoctorController extends Controller
        if($userDelete){
         unlink(public_path('images/'.$user->image));
        }
-        return redirect()->route('doctor.index')->with('message','Xoá bác sĩ thành công');
+        return redirect()->route('doctor.index')->with('message','Xoá thành công');
 
     }
 
@@ -137,7 +138,28 @@ class DoctorController extends Controller
             'role_id'=>'required',
             'description'=>'required'
 
-       ]);
+        ],
+        [
+            'name.required' => 'Họ tên không được để trống.',
+            'name.string' => 'Họ tên phải là chữ cái.',
+            'gender.required' => 'Giới tinh không được để trống',
+            'number_phone.required' => 'Số điện thoại không được để trống',
+            'email.required' => 'Địa chỉ email không được để trống.',
+            'education.required' => 'Học vấn không được để trống.',
+            'address.required' => 'Địa chỉ không được để trống.',
+            'department.required' => 'Chuyên khoa không được để trống.',
+            'phone_number.required' => 'Số điện thoại không được để trống.',
+            'image.required' => 'Ảnh không được để trống.',
+            'role_id.required' => 'Vai trò không được để trống.',
+            'description.required' => 'Mô tả không được để trống.',
+            'email.string' => 'Địa chỉ email phải là ký tự.',
+            'email.email' => 'Email không đúng định dạng.',
+            'email.max' => 'Địa chỉ email không được quá 255 ký tự.',
+            'password.required' => 'Mật khẩu không được để trống.',
+            'password.min' => 'Mật khẩu ít nhất phải 6 kí tự.',
+            'password.confirmed' => 'Mật khẩu nhập lại không khớp.'
+        ]
+    );
     }
     public function validateUpdate($request,$id){
         return  $this->validate($request,[

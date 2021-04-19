@@ -18,7 +18,7 @@ class ProfileController extends Controller
     	]);
     	User::where('id',auth()->user()->id)
     		->update($request->except('_token'));
-    	return redirect()->back()->with('message','profile updated');
+    	return redirect()->back()->with('message','Cập nhật thông tin thành công');
 
     }
     public function profilePic(Request $request)
@@ -32,7 +32,7 @@ class ProfileController extends Controller
     		
     		$user = User::where('id',auth()->user()->id)->update(['image'=>$name]);
     		
-    		return redirect()->back()->with('message','profile updated');
+    		return redirect()->back()->with('message','Cập nhật ảnh thành công');
 
 
     	}

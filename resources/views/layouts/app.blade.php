@@ -24,7 +24,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ asset('template/plugins/bootstrap/dist/css/bootstrap.min.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('template/dist/css/theme.min.css') }}">
 
@@ -97,11 +96,12 @@
                                         <a href="{{ url('user-profile') }}" class="dropdown-item"
                                             style="color: #000; font-size:16px; font-weight: bold;">Thông tin cá nhân</a>
                                     @else
-                                        <a href="{{ url('dashboard') }}" class="dropdown-item">Chuyển đến trang chính</a>
+                                        <a href="{{ url('dashboard') }}" class="dropdown-item"
+                                            style="color: #000; font-size:16px; font-weight: bold;">Đến trang quản trị</a>
                                     @endif
                                     <a style="color: #000; font-size:16px; font-weight: bold;" class="dropdown-item"
                                         href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                             document.getElementById('logout-form').submit();">
+                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Đăng xuất') }}
                                     </a>
 
@@ -124,7 +124,7 @@
     </div>
 
 
-    <script src="{{ asset('template/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
     <script>
         var dateToday = new Date();
         $(function() {
