@@ -60113,7 +60113,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header" }, [_vm._v("Tìm kiếm bác sĩ")]),
+      _c("div", { staticClass: "card-header" }, [
+        _vm._v("Chọn ngày khám và chọn bác sĩ bạn muốn khám")
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -60191,7 +60193,7 @@ var render = function() {
                                 [
                                   _c(
                                     "button",
-                                    { staticClass: "btn btn-success" },
+                                    { staticClass: "btn btn-danger" },
                                     [
                                       _vm._v(
                                         "\n                                        Đặt lịch\n                                    "

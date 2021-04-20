@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container mb-3">
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
@@ -58,7 +58,7 @@
                             <button type="submit" class="btn btn-success" style="width: 100%;">Đặt lịch khám</button>
                         @else
                             <p>Vui lòng đăng nhập để đặt lịch hẹn khám</p>
-                            <a href="{{ url('/register') }}"> <button class="btn btn-success">Đăng kí</button></a>
+                            <a href="{{ url('/register') }}"> <button class="btn btn-info">Đăng kí</button></a>
                             <a href="{{ url('/login') }}"><button class="btn btn-secondary">Đăng nhập</button></a>
                         @endif
                     </div>

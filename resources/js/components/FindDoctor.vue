@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="card">
-            <div class="card-header">Tìm kiếm bác sĩ</div>
+            <div class="card-header">Chọn ngày khám và chọn bác sĩ bạn muốn khám</div>
             <div class="card-body">
                 <datepicker
                     class="my-datepicker"
@@ -46,7 +46,7 @@
                                                 '/' +
                                                 d.date
                                         "
-                                        ><button class="btn btn-success">
+                                        ><button class="btn btn-danger">
                                             Đặt lịch
                                         </button></a
                                     >
