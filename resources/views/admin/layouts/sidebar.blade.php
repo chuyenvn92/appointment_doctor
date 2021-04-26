@@ -15,7 +15,7 @@
                     <div class="nav-item active">
                         <a href="{{ url('dashboard') }}"><i class="ik ik-bar-chart-2"></i><span>Thống kê</span></a>
                     </div>
-                    @if (auth()->check() && auth()->user()->role->name === 'admin')
+                    @if (auth()->check() && auth()->user()->role->name_role === 'admin')
                         <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Chuyên khoa</span> <span
                                     class="badge badge-danger"></span></a>
@@ -27,7 +27,7 @@
                         </div>
                     @endif
 
-                    @if (auth()->check() && auth()->user()->role->name === 'admin')
+                    @if (auth()->check() && auth()->user()->role->name_role === 'admin')
                         <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Bác sĩ</span> <span
                                     class="badge badge-danger"></span></a>
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     @endif
-                    @if (auth()->check() && auth()->user()->role->name === 'doctor')
+                    @if (auth()->check() && auth()->user()->role->name_role === 'doctor')
                         <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Lịch hẹn khám</span> <span
                                     class="badge badge-danger"></span></a>
@@ -49,7 +49,7 @@
                         </div>
                     @endif
 
-                    @if (auth()->check() && auth()->user()->role->name === 'doctor')
+                    @if (auth()->check() && auth()->user()->role->name_role === 'doctor')
                         <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Lịch khám và kê đơn</span> <span
                                     class="badge badge-danger"></span></a>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     @endif
-                    @if (auth()->check() && auth()->user()->role->name === 'admin')
+                    @if (auth()->check() && auth()->user()->role->name_role === 'admin')
                         <div class="nav-item has-sub">
                             <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Thông tin bệnh nhân</span>
                                 <span class="badge badge-danger"></span></a>

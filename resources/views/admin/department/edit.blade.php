@@ -36,18 +36,42 @@
                     <h3>Cập nhật chuyên khoa</h3>
                 </div>
                 <div class="card-body">
-                    <form class="forms-sample" action="{{ route('department.update', [$department->id]) }}" method="post">
+                    <form class="forms-sample" action="{{ route('department.update', [$department->id]) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
-
                                     <label for="">Tên chuyên khoa</label>
-                                    <input type="text" name="department"
-                                        class="form-control @error('department') is-invalid @enderror"
-                                        placeholder="department name" value="{{ $department->department }}">
-                                    @error('department')
+                                    <input type="text" name="name_department"
+                                        class="form-control @error('name') is-invalid @enderror"
+                                        value="{{ $department->name_department }}">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Ảnh chuyên khoa</label>
+                                    <input type="file"
+                                        class="form-control file-upload-info @error('image') is-invalid @enderror"
+                                        placeholder="Upload Image" name="image">
+                                    <span class="input-group-append">
+                                    </span>
+                                    @error('image')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleTextarea1">Thông tin về chuyên khoa</label>
+                                    <textarea class="form-control @error('description_department') is-invalid @enderror"
+                                        id="exampleTextarea1" rows="4"
+                                        name="description_department">{{ $department->description_department }}</textarea>
+                                    @error('description_department')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

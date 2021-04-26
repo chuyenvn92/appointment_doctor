@@ -120,13 +120,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Chuyên khoa</label>
-                                    <select name="department" class="form-control">
+                                    <select name="department_id" class="form-control">
                                         <option value="">Vui lòng chọn</option>
                                         @foreach (App\Department::all() as $d)
-                                            <option value="{{ $d->department }}">{{ $d->department }}</option>
+                                            <option value="{{ $d->id }}">{{ $d->name_department }}</option>
                                         @endforeach
                                     </select>
-                                    @error('department')
+                                    @error('department_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -170,8 +170,8 @@
                                 <label>Vai trò</label>
                                 <select name="role_id" class="form-control @error('role_id') is-invalid @enderror">
                                     <option value="">Vui lòng chọn</option>
-                                    @foreach (App\Role::where('name', '!=', 'patient')->get() as $role)
-                                        @if ($role->name == 'admin')
+                                    @foreach (App\Role::where('name_role', '!=', 'patient')->get() as $role)
+                                        @if ($role->name_role == 'admin')
                                         <option value="1">Bác sĩ</option>
                                         @else 
                                         <option value="2">Quản trị hệ thống</option>

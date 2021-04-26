@@ -118,13 +118,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Chuyên khoa</label>
-                                    <select name="department" class="form-control">
+                                    <select name="department_id" class="form-control">
                                         @foreach (App\Department::all() as $department)
-                                            <option value="{{ $department->department }}" @if ($user->department == $department->department) selected @endif>{{ $department->department }}
+                                            <option value="{{ $department->id }}" @if ($user->department_id == $department->id) selected @endif>{{ $department->name_department }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('department')
+                                    @error('department_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

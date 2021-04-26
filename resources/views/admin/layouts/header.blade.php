@@ -41,7 +41,7 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                @if (auth()->check() && auth()->user()->role->name === 'admin')
+                                @if (auth()->check() && auth()->user()->role->name_role === 'admin')
 
                                     <strong>Xin chào Quản trị viên: {{ Auth()->user()->name }}</strong>
 

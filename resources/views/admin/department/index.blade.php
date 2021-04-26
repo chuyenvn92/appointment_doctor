@@ -17,7 +17,7 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="ik ik-home"></i></a>
+                            <a href="#"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="#">Chuyên khoa</a>
@@ -47,6 +47,7 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
+                                <th class="nosort">Ảnh</th>
                                 <th>Tên chuyên khoa</th>
                                 <th class="nosort">&nbsp;</th>
                                 <th class="nosort">&nbsp;</th>
@@ -57,7 +58,9 @@
                                 @foreach ($departments as $key => $department)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $department->department }}</td>
+                                        <td><img src="{{ asset('images') }}/{{ $department->image }}"
+                                                style="width: 80px; height: 80px; border-radius: 30%;" alt=""></td>
+                                        <td>{{ $department->name_department }}</td>
                                         <td>
                                             <div class="table-actions">
                                                 <a href="{{ route('department.edit', [$department->id]) }}"><i
@@ -74,15 +77,9 @@
                                         <td>x</td>
 
                                     </tr>
-
-
-
-
-
                                 @endforeach
-
                             @else
-                                <td>No departments to display</td>
+                                <td>Không có chuyên khoa nào để hiển thị</td>
                             @endif
 
                         </tbody>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DB;
 class DoctorController extends Controller
 {
     /**
@@ -14,7 +15,12 @@ class DoctorController extends Controller
     public function index()
     {
     
-        $users  = User::where('role_id','!=',3)->get();
+        // $users  = User::where('role_id','!=',3)->get();
+        $users = DB::table('users')
+        ->join('departments', 'users.department_id', 'departments.id')
+        ->join('roles', 'users.role_id', 'roles.id')
+        ->select('users.*', 'roles.name_role','departments.name_department')
+        ->get();
         return view('admin.doctor.index',compact('users'));
     }
 
@@ -40,7 +46,6 @@ class DoctorController extends Controller
         $data = $request->all();
         $name = (new User)->userAvatar($request);
         $data['gender'] = $request->gender;
-
         $data['image'] = $name;
         $data['password'] = bcrypt($request->password);
         User::create($data);
@@ -132,7 +137,7 @@ class DoctorController extends Controller
             'gender'=>'required',
             'education'=>'required',
             'address'=>'required',
-            'department'=>'required',
+            'department_id'=>'required',
             'phone_number'=>'required|numeric',
             'image'=>'required|mimes:jpeg,jpg,png',
             'role_id'=>'required',
@@ -169,7 +174,7 @@ class DoctorController extends Controller
             'gender'=>'required',
             'education'=>'required',
             'address'=>'required',
-            'department'=>'required',
+            'department_id'=>'required',
             'phone_number'=>'required|numeric',
             'image'=>'mimes:jpeg,jpg,png',
             'role_id'=>'required',

@@ -12,7 +12,7 @@
                        <p><img src="{{ asset('images') }}/{{ $user->image }}" class="table-user-thumb" alt=""
                                width="200"></p>
                        <p class="badge badge-pill badge-dark">Vai trò:
-                           {{ $user->role->name == 'doctor' ? 'Bác sĩ' : 'Quản trị viên' }}</p>
+                           {{ $user->name_role == 'doctor' ? 'Bác sĩ' : 'Quản trị viên' }}</p>
                        <p>Tên: {{ $user->name }}</p>
                        @if ($user->gender == 1)
                            <p>Giới tính: Nam</p>
@@ -22,7 +22,7 @@
                        <p>Email: {{ $user->email }}</p>
                        <p>Địa chỉ: {{ $user->address }}</p>
                        <p>Số điện thoại: {{ $user->phone_number }}</p>
-                       <p>Chuyên khoa: {{ $user->department }}</p>
+                       <p>Chuyên khoa: {{ $user->name_department }}</p>
                        <p>Trình độ: {{ $user->education }}</p>
                        <p>Giới thiệu chi tiết: {{ $user->description }}</p>
                    </div>

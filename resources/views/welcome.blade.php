@@ -1,305 +1,281 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="probootstrap-features-1">
-        <div class="container">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="{{ asset('banner/slider_1.jpeg') }}" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('banner/slider_2.jpeg') }}" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="{{ asset('banner/slider_3.jpeg') }}" alt="Third slide">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div><br>
-            <div class="row">
-                <div class="col-md probootstrap-feature-item"
-                    style="background-image:url({{ asset('images/khoa-co-xuong-khop.jpeg') }})">
-                    <div class="probootstrap-feature-item-text">
-                        <span class="icon"><i class="flaticon-first-aid-kit display-4"></i></span>
-                        <h2>Khoa<span>Xương khớp</span></h2>
-                    </div>
-                </div>
-                <div class="col-md probootstrap-opening">
-                    <h2 class="text-uppercase mb-3">Giờ mở cửa<span>Bệnh viện đa khoa Hồng Phát</span></h2>
-                    <ul class="list-unstyled probootstrap-schedule">
-                        <li>Thứ 2 - Thứ 6<span>6:00 - 17:00</span></li>
-                        <li>Thứ 7<span>6:30-17:00</span></li>
-                        <li>Chủ nhật<span>6:30-17:00</span></li>
-                    </ul>
-                </div>
-                <div class="col-md probootstrap-feature-item"
-                    style="background-image:url({{ asset('images/121042-than-kinh.jpeg') }})">
-                    <div class="probootstrap-feature-item-text">
-                        <span class="icon"><i
-                                class="flaticon-gym-control-of-exercises-with-a-list-on-a-clipboard-and-heart-beats display-4"></i></span>
-                        <h2>Khoa<span>Nội thần kinh</span></h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section class="probootstrap-services">
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col-md-3 probootstrap-aside-stretch-left">
-                    <div class="mb-3">
-                        <h2 class="h6">Chuyên Khoa</h2>
-                        <ul class="list-unstyled probootstrap-light mb-4">
-                            <li><a href="#">Cơ Xương Khớp</a></li>
-                            <li><a href="#">Nội Thần Kinh</a></li>
-                            <li><a href="#">Não</a></li>
-                            <li><a href="#">Răng hàm mặt</a></li>
-                            <li><a href="#">Tiêu hoá</a></li>
-                        </ul>
-                        <!-- <p><a href="#" class="arrow-link text-white">Thêm chuyên khoa<i class="icon-chevron-right"></i></a></p> -->
-                    </div>
-                </div>
-                <div class="col-md-9 pl-md-5 pl-0">
-                    <div class="row mb-5">
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="media d-block mb-4 text-left probootstrap-media">
-                                <div class="probootstrap-icon mb-3"><span class="flaticon-price-tag display-4"></span>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="h5 mt-0 text-secondary">Tiết kiệm thời gian và chi phí</h3>
-                                    <p>Đa dạng gói khám phù hợp với nhu cầu của mỗi người bệnh</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="media d-block mb-4 text-left probootstrap-media">
-                                <div class="probootstrap-icon mb-3"><span
-                                        class="flaticon-shield-with-cross display-4"></span></div>
-                                <div class="media-body">
-                                    <h3 class="h5 mt-0 text-secondary">Chuẩn đoán đúng bệnh, nhanh chóng</h3>
-                                    <p>Đảm bảo môi trường an toàn cho mọi người đến thăm khám bệnh</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="media d-block mb-4 text-left probootstrap-media">
-                                <div class="probootstrap-icon mb-3"><span class="flaticon-first-aid-kit display-4"></span>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="h5 mt-0 text-secondary">Chất lượng dịch vụ tận tình chu đáo</h3>
-                                    <p>Hỗ trợ các gói khám: khám giáo sư, khám cá nhân, khám lẻ...</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6">
-                            <div class="media d-block mb-4 text-left probootstrap-media">
-                                <div class="probootstrap-icon mb-3"><span class="flaticon-microscope display-4"></span>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="h5 mt-0 text-secondary">Trả kết quả ngay trong ngày</h3>
-                                    <p>Luôn luôn cập nhật trang thiết bị hiện đại, công nghệ mới nhất vào khám bệnh</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="media d-block mb-4 text-left probootstrap-media">
-                                <div class="probootstrap-icon mb-3"><span
-                                        class="flaticon-gym-control-of-exercises-with-a-list-on-a-clipboard-and-heart-beats display-4"></span>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="h5 mt-0 text-secondary">Cam kết chất lượng và dịch vụ</h3>
-                                    <p>Xây dựng lộ trình điều trị riêng cho từng bệnh nhân, tuỳ theo thể trạng và sức khoẻ
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="media d-block mb-4 text-left probootstrap-media">
-                                <div class="probootstrap-icon mb-3"><span class="flaticon-doctor display-4"></span>
-                                </div>
-                                <div class="media-body">
-                                    <h3 class="h5 mt-0 text-secondary">Lắng nghe, tận tâm và chu đáo</h3>
-                                    <p>Đội ngũ giáo sư, tiến sĩ bác sĩ đầu ngành</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @php
+    $specialists = DB::table('departments')
+        ->orderBy('id', 'desc')
+        ->get();
+    $doctors = DB::table('users')
+        ->join('departments', 'users.department_id', 'departments.id')
+        ->select('users.*', 'departments.name_department')
+        ->where('role_id', 1)
+        ->get();
+    @endphp
+ <!-- HOME -->
+ <section id="home" class="slider" data-stellar-background-ratio="0.5">
     <div class="container">
-        <find-doctor></find-doctor>
+        <div class="row">
+
+            <div class="owl-carousel owl-theme">
+                <div class="item item-first">
+                    <div class="caption">
+                        <div class="col-md-offset-1 col-md-10">
+                            <h3>Làm cho cuộc sống trở nên đơn giản hơn</h3>
+                            <h1>Sống khoẻ</h1>
+                            <a href="#team" class="section-btn btn btn-default smoothScroll">Gặp bác sĩ</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item item-second">
+                    <div class="caption">
+                        <div class="col-md-offset-1 col-md-10">
+                            <h3>Lắng nghe những chia sẻ từ chúng tôi</h3>
+                            <h1>Phong cách sống mới</h1>
+                            <a href="#about" class="section-btn btn btn-default btn-gray smoothScroll">Về chúng
+                                tôi</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item item-third">
+                    <div class="caption">
+                        <div class="col-md-offset-1 col-md-10">
+                            <h3>Chia sẻ những kinh nghệm quý báu</h3>
+                            <h1>Hãy lắng nghe</h1>
+                            <a href="#news" class="section-btn btn btn-default btn-blue smoothScroll">Đọc nhiều
+                                hơn</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <!--date picker component-->
-    <section class="probootstrap-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="media d-block mb-5 text-center probootstrap-media">
-                        <div class="probootstrap-icon mb-3"><span class="flaticon-price-tag display-4"></span></div>
-                        <div class="media-body">
-                            <h3 class="h5 mt-0 text-secondary">Chi phí hợp lí</h3>
-                            <p>Đa dạng gói khám phù hợp với nhu cầu của mỗi người bệnh</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="media d-block mb-5 text-center probootstrap-media">
-                        <div class="probootstrap-icon mb-3"><span class="flaticon-shield-with-cross display-4"></span>
-                        </div>
-                        <div class="media-body">
-                            <h3 class="h5 mt-0 text-secondary">Chất lượng và an toàn</h3>
-                            <p>Đảm bảo môi trường an toàn cho mọi người đến thăm khám bệnh</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="media d-block mb-5 text-center probootstrap-media">
-                        <div class="probootstrap-icon mb-3"><span class="flaticon-microscope display-4"></span></div>
-                        <div class="media-body">
-                            <h3 class="h5 mt-0 text-secondary">Đa dạng dịch vụ</h3>
-                            <p>Hỗ trợ các gói khám: khám giáo sư, khám cá nhân, khám lẻ...</p>
-                        </div>
-                    </div>
-                </div>
+</section>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="media d-block mb-5 text-center probootstrap-media">
-                        <div class="probootstrap-icon mb-3"><span class="flaticon-microscope display-4"></span></div>
-                        <div class="media-body">
-                            <h3 class="h5 mt-0 text-secondary">Thiết bị hiện đại</h3>
-                            <p>Luôn luôn cập nhật trang thiết bị hiện đại, công nghệ mới nhất vào khám bệnh</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="media d-block mb-5 text-center probootstrap-media">
-                        <div class="probootstrap-icon mb-3"><span
-                                class="flaticon-gym-control-of-exercises-with-a-list-on-a-clipboard-and-heart-beats display-4"></span>
-                        </div>
-                        <div class="media-body">
-                            <h3 class="h5 mt-0 text-secondary">Lộ trình phù hợp</h3>
-                            <p>Xây dựng lộ trình điều trị riêng cho từng bệnh nhân, tuỳ theo thể trạng và sức khoẻ
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="media d-block mb-5 text-center probootstrap-media">
-                        <div class="probootstrap-icon mb-3"><span class="flaticon-doctor display-4"></span></div>
-                        <div class="media-body">
-                            <h3 class="h5 mt-0 text-secondary">Bác sĩ nhiều kinh nghiệm</h3>
-                            <p>Đội ngũ giáo sư, tiến sĩ bác sĩ đầu ngành</p>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
-    </section>
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <div class="row">
 
-    <section class="probootstrap-section bg-light">
-        <div class="container">
-            <div class="row no-gutters">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6 prbootstrap-team">
-                    <img src="{{ asset('images/gUoYKxXU4QeuLIkK7d9ZXRGbAI602aiPg4gD3GxL.jpg') }}" alt="image" class="img-fluid">
-                    <div class="probootstrap-person-text">
-                        <span class="title">Cơ xương khớp</span>
-                        <span class="name">Bác sĩ Trần Ngọc Ân</span>
+            <div class="col-md-6 col-sm-6">
+                <div class="about-info">
+                    <h2 class="wow fadeInUp" data-wow-delay="0.6s">Chào mừng bạn đến với trang đặt lịch khám bệnh
+                        viện <i class="fa fa-h-square"></i>ồng Phát</h2>
+                    <div class="wow fadeInUp" data-wow-delay="0.8s">
+                        <p>Cung cấp cho bạn thông tin lịch khám của các giáo sư tiến sĩ hàng đầu tại Hồng Phát</p>
+                        <p>Lịch khám được cập nhật hàng ngày với thông tin chi tiết của từng bác sĩ, hi vọng sẽ giúp
+                            bạn đơn giản hoá việc thăm khám bệnh tại bệnh viện</p>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6 prbootstrap-team">
-                    <img src="{{ asset('images/gUoYKxXU4QeuLIkK7d9ZXRGbAI602aiPg4gD3GxL.jpg') }}" alt="image" class="img-fluid">
-                    <div class="probootstrap-person-text">
-                        <span class="title">Cơ xương khớp</span>
-                        <span class="name">Bác sĩ Trần Ngọc Ân</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6 prbootstrap-team">
-                    <img src="{{ asset('images/gUoYKxXU4QeuLIkK7d9ZXRGbAI602aiPg4gD3GxL.jpg') }}" alt="image" class="img-fluid">
-                    <div class="probootstrap-person-text">
-                        <span class="title">Cơ xương khớp</span>
-                        <span class="name">Bác sĩ Trần Ngọc Ân</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-6 prbootstrap-team">
-                    <img src="{{ asset('images/gUoYKxXU4QeuLIkK7d9ZXRGbAI602aiPg4gD3GxL.jpg') }}" alt="image" class="img-fluid">
-                    <div class="probootstrap-person-text">
-                        <span class="title">Cơ xương khớp</span>
-                        <span class="name">Bác sĩ Trần Ngọc Ân</span>
-                    </div>
+                    <figure class="profile wow fadeInUp" data-wow-delay="1s">
+                        <img src="images/author-image.jpeg" class="img-responsive" alt="">
+                        <figcaption>
+                            <h3>Mai Công Chuyên</h3>
+                            <p>Developer</p>
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
+
         </div>
-    </section>
-
-    <section class="probootstrap-section" id="section-counter">
-        <div class="container">
-            <div class="row">
-                <div class="col-md probootstrap-animate">
-                    <div class="probootstrap-counter text-center">
-                        <span class="probootstrap-number" data-number="12">0</span>
-                        <span class="probootstrap-label">Năm thành lập</span>
-                    </div>
-                </div>
-                <div class="col-md probootstrap-animate">
-                    <div class="probootstrap-counter text-center">
-                        <span class="probootstrap-number" data-number="30">0</span>
-                        <span class="probootstrap-label">Giáo sư tiến sĩ</span>
-                    </div>
-                </div>
-                <div class="col-md probootstrap-animate">
-                    <div class="probootstrap-counter text-center">
-                        <span class="probootstrap-number" data-number="60">0</span>
-                        <span class="probootstrap-label">Y tá điều dưỡng</span>
-                    </div>
-                </div>
-                <div class="col-md probootstrap-animate">
-                    <div class="probootstrap-counter text-center">
-                        <span class="probootstrap-number" data-number="1000000">0</span>
-                        <span class="probootstrap-label">Điều trị bệnh nhân/năm</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    {{-- <section class="probootstrap-subscribe">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md-12">
-                    <h2 class="h1 text-white">Subscribe Newsletter</h2>
-                    <p class="lead text-white">Far far away, behind the word mountains, far from the countries Vokalia.
-                    </p>
-                </div>
-            </div>
-            <form action="#" method="post">
-                <div class="row">
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" placeholder="Name">
-                    </div>
-                    <div class="col-md-4 mb-md-0 mb-3">
-                        <input type="text" class="form-control" placeholder="Email">
-                    </div>
-                    <div class="col-md-4">
-                        <input type="submit" value="Subscribe" class="btn btn-primary btn-block">
-                    </div>
-
-                </div>
-            </form>
-        </div>
-    </section> --}}
     </div>
+</section>
+
+
+<!-- TEAM -->
+<section id="team" data-stellar-background-ratio="1">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+                <div class="about-info">
+                    <h2 class="wow fadeInUp" data-wow-delay="0.1s">Các bác sĩ tiêu biểu</h2>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                    <img src="images/team-image1.jpg" class="img-responsive" alt="">
+                    <div class="team-info">
+                        <h3>Nate Baston</h3>
+                        <p>General Principal</p>
+                        <div class="team-contact-info">
+                            <p><i class="fa fa-phone"></i> 010-020-0120</p>
+                            <p><i class="fa fa-envelope-o"></i> <a href="#">general@company.com</a></p>
+                        </div>
+                        <ul class="social-icon">
+                            <li><a href="#" class="fa fa-linkedin-square"></a></li>
+                            <li><a href="#" class="fa fa-envelope-o"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- NEWS -->
+<section id="news" data-stellar-background-ratio="2.5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <!-- SECTION TITLE -->
+                <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                    <h2>Cẩm nang</h2>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <!-- NEWS THUMB -->
+                <div class="news-thumb wow fadeInUp" data-wow-delay="0.4s">
+                    <a href="news-detail.html">
+                        <img src="images/news-image1.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="news-info">
+                        <span>24-03-201</span>
+                        <h3><a href="news-detail.html">Sự thú zị của công nghệ thời đại số</a></h3>
+                        <p>Ứng dụng công nghệ trong đặt hẹn lịch khám</p>
+                        <div class="author">
+                            <img src="images/author-image.jpeg" class="img-responsive" alt="">
+                            <div class="author-info">
+                                <h5>Mai Công Chuyên</h5>
+                                <p>Nhà Phát triển</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <!-- NEWS THUMB -->
+                <div class="news-thumb wow fadeInUp" data-wow-delay="0.6s">
+                    <a href="news-detail.html">
+                        <img src="images/news-image2.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="news-info">
+                        <span>24-4-2021</span>
+                        <h3><a href="news-detail.html">Introducing a new healing process</a></h3>
+                        <p>Fusce vel sem finibus, rhoncus massa non, aliquam velit. Nam et est ligula.</p>
+                        <div class="author">
+                            <img src="images/author-image.jpeg" class="img-responsive" alt="">
+                            <div class="author-info">
+                                <h5>Jason Stewart</h5>
+                                <p>General Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <!-- NEWS THUMB -->
+                <div class="news-thumb wow fadeInUp" data-wow-delay="0.8s">
+                    <a href="news-detail.html">
+                        <img src="images/news-image3.jpg" class="img-responsive" alt="">
+                    </a>
+                    <div class="news-info">
+                        <span>January 27, 2018</span>
+                        <h3><a href="news-detail.html">Review Annual Medical Research</a></h3>
+                        <p>Vivamus non nulla semper diam cursus maximus. Pellentesque dignissim.</p>
+                        <div class="author">
+                            <img src="images/author-image.jpeg" class="img-responsive" alt="">
+                            <div class="author-info">
+                                <h5>Andrio Abero</h5>
+                                <p>Online Advertising</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- MAKE AN APPOINTMENT -->
+<section id="appointment" data-stellar-background-ratio="3">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+                <img src="images/appointment-image.jpg" class="img-responsive" alt="">
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <!-- CONTACT FORM HERE -->
+                <form id="appointment-form" role="form" method="post" action="#">
+
+                    <!-- SECTION TITLE -->
+                    <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                        <h2>Đặt lịch khám</h2>
+                    </div>
+
+                    <div class="wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="col-md-6 col-sm-6">
+                            <label for="name">Họ và tên</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                placeholder="Họ tên đầy đủ">
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Địa chỉ Email">
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <label for="date">Chọn ngày khám</label>
+                            <input type="date" name="date" value="" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+                            <label for="select">Chuyên khoa</label>
+                            <select class="form-control">
+                                <option>Răng hàm mặt</option>
+                                <option>Da liễu</option>
+                                <option>Cơ xương khớp</option>
+                                <option>Nội thần kinh</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12">
+                            <label for="telephone">Số điện thoại</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone">
+                            <label for="Message">Ghi chú</label>
+                            <textarea class="form-control" rows="5" id="message" name="message"
+                                placeholder="Nội dung"></textarea>
+                            <button type="submit" class="form-control" id="cf-submit" name="submit">Gửi yêu
+                                cầu</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- GOOGLE MAP -->
+<section id="google-map">
+    <!-- How to change your own map point
+        1. Go to Google Maps
+        2. Click on your location point
+        3. Click "Share" and choose "Embed map" tab
+        4. Copy only URL and paste it within the src="" field below
+-->
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.3578173828696!2d105.83940891417917!3d21.018364186003964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab2976472f57%3A0xbd0797cd6f690c09!2zQuG7h25oIFZp4buHbiDEkGEgS2hvYSBI4buTbmcgUGjDoXQ!5e0!3m2!1svi!2s!4v1619164673019!5m2!1svi!2s"
+        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
 @endsection

@@ -36,9 +36,14 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'department'=>'required'
+            'name'=>'required',
+            'image' => 'required',
+            'description_department' => 'required'
         ]);
-        Department::create($request->all());
+        $data = $request->all();
+        $name = (new Department)->specialistImage($request);
+        $data['image'] = $name;
+        Department::create($data);
         return redirect()->back()->with('message','Thêm mới chuyên khoa thành công');
     }
 
@@ -74,12 +79,15 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'department'=>'required'
-        ]);
+        $data = $request->all();
         $department = Department::find($id);
-        $department->department = $request->department;
-        $department->save();
+        $imageName = $department->image;
+        if($request->hasFile('image')){
+            $imageName =(new Department)->specialistImage($request);
+            unlink(public_path('images/'.$department->image));
+        }
+        $data['image'] = $imageName;
+        $department->update($data);
         return redirect()->route('department.index')->with('message','Cập nhật chuyên khoa thành công');
     }
 

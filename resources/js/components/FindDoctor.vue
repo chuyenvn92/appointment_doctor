@@ -37,7 +37,7 @@
                                     />
                                 </td>
                                 <td>{{ d.doctor.name }}</td>
-                                <td>{{ d.doctor.department }}</td>
+                                <td>{{ d.doctor.department_id }}</td>
                                 <td>
                                     <a
                                         :href="
@@ -82,7 +82,7 @@ export default {
             time: "",
             vi: vi,
             doctors: [],
-            color: '#51cc18',
+            color: '#f3547f',
             size: '20px',
             loading: false,
             disabledDates: {

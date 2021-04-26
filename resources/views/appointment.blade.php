@@ -11,13 +11,13 @@
                         <br>
                         <p class="lead"> Tên: {{ ucfirst($user->name) }}</p>
                         <p class="lead">Trình độ: {{ $user->education }}</p>
-                        <p class="lead">Chuyên khoa: {{ $user->department }}</p>
+                        <p class="lead">Chuyên khoa: {{ $user->department_name }}</p>
                         <p class="lead">Giới thiệu: {{ $user->description }}</p>
                     </div>
 
                 </div>
 
-            </div>
+            </div> 
             <div class="col-md-9">
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger">{{ $error }}</div>

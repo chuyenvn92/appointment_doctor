@@ -61,7 +61,7 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->address}}</td>
                         <td>{{$user->phone_number}}</td>
-                        <td>{{$user->department}}</td>
+                        <td>{{$user->name_department}}</td>
                         <td>
                             <div class="table-actions">
                                 <a href="#" data-toggle="modal" data-target="#exampleModal{{$user->id}}">

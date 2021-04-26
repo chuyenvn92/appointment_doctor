@@ -7,6 +7,7 @@ use App\Appointment;
 use App\Time;
 use App\User;
 use App\Booking;
+use DB;
 use App\Prescription;
 use App\Mail\AppointmentMail;
 class FrontendController extends Controller
@@ -28,7 +29,9 @@ class FrontendController extends Controller
         $appointment = Appointment::where('user_id',$doctorId)->where('date',$date)->first();
         $times = Time::where('appointment_id',$appointment->id)->where('status',0)->get();
         $user = User::where('id',$doctorId)->first();
+        
         $doctor_id = $doctorId;
+        // ->join('departments', 'users.department_id', 'departments.id')
 
         return view('appointment',compact('times','date','user','doctor_id'));
     }
@@ -104,13 +107,23 @@ class FrontendController extends Controller
 
     public function doctorToday(Request $request)
     {
-        $doctors = Appointment::with('doctor')->whereDate('date',date('Y-m-d'))->get();
+        $doctors = Appointment::with('doctor')
+        ->whereDate('date',date('Y-m-d'))
+        // ->join('users')
+        ->get();
+        // $doctors = DB::table('users')
+        // ->join('departments', 'users.department_id', 'departments.id')
+        // ->join('appointments', 'appointments.user_id', 'users.id')
+        // ->select('users.*','departments.name_department')
+        // ->whereDate('date',date('Y-m-d'))
+        // ->get();
         return $doctors;
+        // return $doctors;
     }
 
     public function findDoctors(Request $request)
     {
-        $doctors = Appointment::with('doctor')->whereDate('date',$request->date)->get();
+        $doctors = Appointment::with('doctor')->where('date',$request->date)->get();
         return $doctors;
     }
 
