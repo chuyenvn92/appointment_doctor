@@ -15,12 +15,7 @@ class DoctorController extends Controller
     public function index()
     {
     
-        // $users  = User::where('role_id','!=',3)->get();
-        $users = DB::table('users')
-        ->join('departments', 'users.department_id', 'departments.id')
-        ->join('roles', 'users.role_id', 'roles.id')
-        ->select('users.*', 'roles.name_role','departments.name_department')
-        ->get();
+        $users  = User::where('role_id','=',1)->get();
         return view('admin.doctor.index',compact('users'));
     }
 
@@ -137,7 +132,7 @@ class DoctorController extends Controller
             'gender'=>'required',
             'education'=>'required',
             'address'=>'required',
-            'department_id'=>'required',
+            'department'=>'required',
             'phone_number'=>'required|numeric',
             'image'=>'required|mimes:jpeg,jpg,png',
             'role_id'=>'required',
@@ -174,7 +169,7 @@ class DoctorController extends Controller
             'gender'=>'required',
             'education'=>'required',
             'address'=>'required',
-            'department_id'=>'required',
+            'department'=>'required',
             'phone_number'=>'required|numeric',
             'image'=>'mimes:jpeg,jpg,png',
             'role_id'=>'required',

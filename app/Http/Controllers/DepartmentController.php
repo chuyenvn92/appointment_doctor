@@ -36,7 +36,7 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name'=>'required',
+            'name_department'=>'required',
             'image' => 'required',
             'description_department' => 'required'
         ]);

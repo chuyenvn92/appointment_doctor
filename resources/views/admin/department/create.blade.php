@@ -46,9 +46,9 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="">Tên chuyên khoa</label>
-                                    <input type="text" name="name_department" class="form-control @error('name') is-invalid @enderror"
-                                        placeholder="Tên chuyên khoa" value="{{ old('name') }}">
-                                    @error('name')
+                                    <input type="text" name="name_department" class="form-control @error('name_department') is-invalid @enderror"
+                                        placeholder="Tên chuyên khoa" value="{{ old('name_department') }}">
+                                    @error('name_department')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

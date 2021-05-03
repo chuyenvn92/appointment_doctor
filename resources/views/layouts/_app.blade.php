@@ -42,15 +42,6 @@
                     <div class="ml-auto">
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <!-- Left Side Of Navbar -->
-                            {{-- <ul class="navbar-nav mr-auto">
-                                <form action="#" method="get" class="probootstrap-search-form mb-sm-0 mb-3">
-                                    <div class="form-group">
-                                        <button class="icon submit"><span class="icon-magnifying-glass"></span></button>
-                                        <input type="text" class="form-control" placeholder="Tìm kiếm">
-                                    </div>
-                                </form>
-                            </ul> --}}
 
                             <!-- Right Side Of Navbar -->
                             <ul class="navbar-nav ml-auto">

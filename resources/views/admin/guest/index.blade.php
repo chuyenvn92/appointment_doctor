@@ -8,8 +8,8 @@
         <div class="page-header-title">
             <i class="ik ik-inbox bg-blue"></i>
             <div class="d-inline">
-                <h5>Bác sĩ</h5>
-                <span>Danh sách tất cả các bác sĩ</span>
+                <h5>Bệnh nhân ngoài</h5>
+                <span>Danh sách yêu cầu khám không đăng kí</span>
             </div>
         </div>
     </div>
@@ -17,10 +17,10 @@
         <nav class="breadcrumb-container" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#"><i class="ik ik-home"></i></a>
+                    <a href="../index.html"><i class="ik ik-home"></i></a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="#">Bác sĩ</a>
+                    <a href="#">Bệnh nhân</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">Index</li>
             </ol>
@@ -43,34 +43,25 @@
                 <thead>
                     <tr>
                         <th>Tên</th>
-                        <th class="nosort">Ảnh</th>
-                        <th>Email</th>
-                        <th>Địa chỉ</th>
+                        <th>Ngày muốn khám</th>
                         <th>Số điện thoại</th>
-                        <th>Chuyên khoa</th>
+                        <th>Chuyên khoa muốn khám</th>
                         <th class="nosort">&nbsp;</th>
                         <th class="nosort">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if(count($users)>0)
-                    @foreach($users as $user)
+                    @if(count($guests)>0)
+                    @foreach($guests as $guest)
                     <tr>
-                        <td>{{$user->name}}</td>
-                        <td><img src="{{asset('images')}}/{{$user->image}}" class="table-user-thumb" alt=""></td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->address}}</td>
-                        <td>{{$user->phone_number}}</td>
-                        <td>{{$user->department}}</td>
+                        <td>{{$guest->name}}</td>
+                        <td>{{date('d-m-Y', strtotime($guest->date))}}</td>
+                        <td>{{$guest->phone}}</td>
+                        <td>{{$guest->specialist}}</td>
                         <td>
                             <div class="table-actions">
-                                <a href="#" data-toggle="modal" data-target="#exampleModal{{$user->id}}">
+                                <a href="#" data-toggle="modal" data-target="#exampleModal{{$guest->id}}">
                                 <i class="ik ik-eye"></i>
-                                </a>
-                                <a href="{{route('doctor.edit',[$user->id])}}"><i class="ik ik-edit-2"></i></a>
-                                
-                                <a href="{{route('doctor.show',[$user->id])}}">
-                                    <i class="ik ik-trash-2"></i>
                                 </a>
                             </div>
                         </td>
@@ -79,7 +70,7 @@
                     </tr>
            
                     <!-- View Modal -->
-                    @include('admin.doctor.model')
+                    @include('admin.guest.model')
                     @endforeach
                     @else 
                     <td>Không có dữ liệu để hiển thị</td>

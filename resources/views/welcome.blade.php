@@ -7,9 +7,9 @@
         ->orderBy('id', 'desc')
         ->get();
     $doctors = DB::table('users')
-        ->join('departments', 'users.department_id', 'departments.id')
-        ->select('users.*', 'departments.name_department')
+        ->select('users.*')
         ->where('role_id', 1)
+        ->limit(3)
         ->get();
     @endphp
  <!-- HOME -->
@@ -21,9 +21,9 @@
                 <div class="item item-first">
                     <div class="caption">
                         <div class="col-md-offset-1 col-md-10">
-                            <h3>Làm cho cuộc sống trở nên đơn giản hơn</h3>
-                            <h1>Sống khoẻ</h1>
-                            <a href="#team" class="section-btn btn btn-default smoothScroll">Gặp bác sĩ</a>
+                            <h3>Gửi yêu cầu khám bệnh mà không cần đăng kí</h3>
+                            <h1>Làm cho cuộc sống trở nên đơn giản hơn</h1>
+                            <a href="#appointment" class="section-btn btn btn-default smoothScroll">Đặt lịch ngay</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         <div class="col-md-offset-1 col-md-10">
                             <h3>Chia sẻ những kinh nghệm quý báu</h3>
                             <h1>Hãy lắng nghe</h1>
-                            <a href="#news" class="section-btn btn btn-default btn-blue smoothScroll">Đọc nhiều
+                            <a href="#team" class="section-btn btn btn-default btn-blue smoothScroll">Đọc nhiều
                                 hơn</a>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <img src="images/author-image.jpeg" class="img-responsive" alt="">
                         <figcaption>
                             <h3>Mai Công Chuyên</h3>
-                            <p>Developer</p>
+                            <p>Cậu bé thực tập</p>
                         </figcaption>
                     </figure>
                 </div>
@@ -97,16 +97,16 @@
             </div>
 
             <div class="clearfix"></div>
-
+            @foreach ($doctors as $doctor)
             <div class="col-md-4 col-sm-6">
                 <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
-                    <img src="images/team-image1.jpg" class="img-responsive" alt="">
+                    <img src="{{asset('images')}}/{{$doctor->image}}" class="img-responsive" alt="">
                     <div class="team-info">
-                        <h3>Nate Baston</h3>
-                        <p>General Principal</p>
+                        <h3>{{ $doctor->name}}</h3>
+                        <p>{{ $doctor->department}}</p>
                         <div class="team-contact-info">
-                            <p><i class="fa fa-phone"></i> 010-020-0120</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">general@company.com</a></p>
+                            <p><i class="fa fa-phone"></i>{{ $doctor->phone_number}}</p>
+                            <p><i class="fa fa-envelope-o"></i> <a href="#">{{ $doctor->email }}</a></p>
                         </div>
                         <ul class="social-icon">
                             <li><a href="#" class="fa fa-linkedin-square"></a></li>
@@ -115,13 +115,13 @@
                     </div>
                 </div>
             </div>
-
+            @endforeach
         </div>
     </div>
 </section>
 
 
-<!-- NEWS -->
+{{-- <!-- NEWS -->
 <section id="news" data-stellar-background-ratio="2.5">
     <div class="container">
         <div class="row">
@@ -198,7 +198,7 @@
 
         </div>
     </div>
-</section>
+</section> --}}
 
 
 <!-- MAKE AN APPOINTMENT -->
@@ -212,11 +212,11 @@
 
             <div class="col-md-6 col-sm-6">
                 <!-- CONTACT FORM HERE -->
-                <form id="appointment-form" role="form" method="post" action="#">
-
+                <form id="appointment-form" role="form" action="{{ route('store.guest') }}" method="post">
+                    @csrf
                     <!-- SECTION TITLE -->
                     <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
-                        <h2>Đặt lịch khám</h2>
+                        <h2>Đặt lịch khám nhanh</h2>
                     </div>
 
                     <div class="wow fadeInUp" data-wow-delay="0.8s">
@@ -239,11 +239,10 @@
 
                         <div class="col-md-6 col-sm-6">
                             <label for="select">Chuyên khoa</label>
-                            <select class="form-control">
-                                <option>Răng hàm mặt</option>
-                                <option>Da liễu</option>
-                                <option>Cơ xương khớp</option>
-                                <option>Nội thần kinh</option>
+                            <select class="form-control" name="specialist">
+                                @foreach($specialists as $specialist)
+                                <option>{{ $specialist->name_department}}</option>
+                                @endforeach
                             </select>
                         </div>
 

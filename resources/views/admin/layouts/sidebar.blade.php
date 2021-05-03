@@ -48,28 +48,48 @@
                             </div>
                         </div>
                     @endif
+                    @if (auth()->check() && auth()->user()->role->name_role === 'doctor')
+                        <div class="nav-item has-sub">
+                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Lịch đặt khám</span> <span
+                                    class="badge badge-danger"></span></a>
+                            <div class="submenu-content">
+                                <a href="{{ route('patient.index') }}" class="menu-item">Lượt đặt trong ngày</a>
+                                <a href="{{ route('patient.all') }}" class="menu-item">Danh sách lượt đặt</a>
+                            </div>
+                        </div>
+                    @endif
 
                     @if (auth()->check() && auth()->user()->role->name_role === 'doctor')
                         <div class="nav-item has-sub">
-                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Lịch khám và kê đơn</span> <span
+                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Chuẩn đoán và kê đơn</span> <span
                                     class="badge badge-danger"></span></a>
                             <div class="submenu-content">
-                                <a href="{{ route('patients.today') }}" class="menu-item">Lịch khám trong ngày</a>
-                                <a href="{{ route('prescribed.patients') }}" class="menu-item">Bệnh nhân đã khám</a>
+                                <a href="{{ route('patients.today') }}" class="menu-item">Trong ngày</a>
+                                <a href="{{ route('prescribed.patients') }}" class="menu-item">Tất cả bệnh nhân đã khám</a>
                             </div>
                         </div>
                     @endif
                     @if (auth()->check() && auth()->user()->role->name_role === 'admin')
                         <div class="nav-item has-sub">
-                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Thông tin bệnh nhân</span>
+                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Thống kê đặt khám</span>
                                 <span class="badge badge-danger"></span></a>
                             <div class="submenu-content">
-                                <a href="{{ route('patient') }}" class="menu-item">Bệnh nhân</a>
-                                <a href="{{ route('all.appointments') }}" class="menu-item">Danh sách đã khám</a>
+                                <a href="{{ route('patient') }}" class="menu-item">Đặt khám trong ngày</a>
+                                <a href="{{ route('all.appointments') }}" class="menu-item">Tổng lượt đặt</a>
 
                             </div>
                         </div>
 
+                    @endif
+                    @if (auth()->check() && auth()->user()->role->name_role === 'admin')
+                        <div class="nav-item has-sub">
+                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Bệnh nhân đăng kí ngoài</span> <span
+                                    class="badge badge-danger"></span></a>
+                            <div class="submenu-content">
+                                <a href="{{ route('guest.index') }}" class="menu-item"> Xem danh sách</a>
+
+                            </div>
+                        </div>
                     @endif
 
                     <div class="nav-item active">

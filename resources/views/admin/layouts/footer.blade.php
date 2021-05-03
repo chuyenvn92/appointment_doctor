@@ -27,13 +27,23 @@
  <script src="{{ asset('template/plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js') }}">
  </script>
  <script type="text/javascript">
-    $(document).ready(function() {
-        $("#datepicker").datetimepicker({
-            format: 'YYYY-MM-DD'
-        })
-    })
+     $(document).ready(function() {
+         $("#datepicker").datetimepicker({
+             format: 'DD-MM-YYYY'
+         });
+        //  var d = new Date();
 
-</script>
+        //  var month = d.getMonth() + 1;
+        //  var day = d.getDate();
+
+        //  var output = (day < 10 ? '0' : '') + day + '-' +
+        //      (month < 10 ? '0' : '') + month + '-' +
+        //      d.getFullYear();
+
+        //  $("#datepicker").val(output);
+     })
+
+ </script>
  <script src="{{ asset('template/plugins/d3/dist/d3.min.js') }}"></script>
  <script src="{{ asset('template/plugins/c3/c3.min.js') }}"></script>
  <script src="{{ asset('template/js/tables.js') }}"></script>

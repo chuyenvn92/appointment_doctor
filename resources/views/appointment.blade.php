@@ -11,13 +11,12 @@
                         <br>
                         <p class="lead"> Tên: {{ ucfirst($user->name) }}</p>
                         <p class="lead">Trình độ: {{ $user->education }}</p>
-                        <p class="lead">Chuyên khoa: {{ $user->department_name }}</p>
+                        <p class="lead">Chuyên khoa: {{ $user->department }}</p>
                         <p class="lead">Giới thiệu: {{ $user->description }}</p>
                     </div>
 
                 </div>
-
-            </div> 
+            </div>
             <div class="col-md-9">
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger">{{ $error }}</div>
@@ -53,13 +52,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
+                    <div class="row">
                         @if (Auth::check())
-                            <button type="submit" class="btn btn-success" style="width: 100%;">Đặt lịch khám</button>
+                            <button type="submit" class="btn btn-success col-md-2">Đặt lịch khám</button>
                         @else
                             <p>Vui lòng đăng nhập để đặt lịch hẹn khám</p>
-                            <a href="{{ url('/register') }}"> <button class="btn btn-info">Đăng kí</button></a>
-                            <a href="{{ url('/login') }}"><button class="btn btn-secondary">Đăng nhập</button></a>
+                            <a href="#" type="button" data-toggle="modal" data-target="#registerForm">
+                                <button class="btn btn-primary">Đăng kí</button>
+                            </a>
+                            <a href="#" type="button" data-toggle="modal" data-target="#loginForm">
+                                <button class="btn btn-info">Đăng nhập</button>
+                            </a>
                         @endif
                     </div>
                 </form>
@@ -67,4 +70,27 @@
             </div>
         </div>
     </div>
+
+    <style type="text/css">
+        label.btn {
+            padding: 0;
+        }
+
+        label.btn input {
+            opacity: 0;
+            position: absolute;
+        }
+
+        label.btn span {
+            text-align: center;
+            padding: 6px 12px;
+            display: block;
+            min-width: 80px;
+        }
+
+        label.btn input:checked+span {
+            background-color: rgb(80, 110, 228);
+            color: #fff;
+        }
+    </style>
 @endsection

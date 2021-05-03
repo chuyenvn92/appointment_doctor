@@ -26,6 +26,7 @@
                                     <th scope="col">Bác sĩ</th>
                                     <th scope="col">Trạng thái</th>
                                     <th scope="col">Đơn thuốc</th>
+                                    <th scope="col">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,13 +44,13 @@
                                         <td>{{ $booking->doctor->name }}</td>
                                         <td>
                                             @if ($booking->status == 1)
-                                                Đã khám
+                                                <button class="btn btn-info">Đã khám</button>
                                             @endif
                                         </td>
                                         <td>
                                             <!-- Button trigger modal -->
 
-                                            @if (!App\Prescription::where('date', date('Y-m-d'))->where('doctor_id', auth()->user()->id)->where('user_id', $booking->user->id)->exists())
+                                            @if (!App\Prescription::where('date', date('d-m-Y'))->where('doctor_id', auth()->user()->id)->where('user_id', $booking->user->id)->exists())
                                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#exampleModal{{ $booking->user_id }}">
                                                     Viết đơn thuốc
@@ -60,12 +61,19 @@
                                                 <a href="{{ route('prescription.show', [$booking->user_id, $booking->date]) }}"
                                                     class="btn btn-secondary">Xem đơn thuốc</a>
                                             @endif
-
-
                                         </td>
+                                        <td>
+                                            @if (!App\Prescription::where('date', date('d-m-Y'))->where('doctor_id', auth()->user()->id)->where('user_id', $booking->user->id)->exists())
+
+                                            @else
+                                                <a href="{{ route('patient.generatePDF', [$booking->user_id, $booking->date]) }}"
+                                                    class="btn btn-secondary"><i class="fas fa-print"></i></a>
+                                            @endif
+                                        </td>
+
                                     </tr>
                                 @empty
-                                    <td>Bạn không có lượt khám nào</td>
+                                    <td>Không có lượt khám bệnh nào trong ngày {{ date('d-m-Y') }}</td>
                                 @endforelse
 
                             </tbody>

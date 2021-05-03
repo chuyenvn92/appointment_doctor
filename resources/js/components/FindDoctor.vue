@@ -1,7 +1,11 @@
 <template>
     <div>
         <div class="card">
-            <div class="card-header">Chọn ngày khám và chọn bác sĩ bạn muốn khám</div>
+            <div class="card-header text-center mb-3">
+                <h3>
+                    Chọn ngày khám và chọn bác sĩ bạn muốn khám
+                </h3>
+            </div>
             <div class="card-body">
                 <datepicker
                     class="my-datepicker"
@@ -14,43 +18,47 @@
                 ></datepicker>
             </div>
             <div class="card mt-5">
-                <div class="card-header">Danh sách các bác sĩ</div>
+                <div class="card-header text-center">
+                    <h3>
+                        Danh sách các bác sĩ
+                    </h3>
+                </div>
                 <div class="card-body">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Ảnh</th>
-                                <th>Tên</th>
+                                <th>Số thứ tự</th>
+                                <th></th>
+                                <th>Bác sĩ</th>
                                 <th>Chuyên Khoa</th>
-                                <th>Thao tác</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr v-for="(d, index) in doctors" :key="d.id">
                                 <template v-if="!loading">
-                                <th scope="row">{{ index + 1 }}</th>
-                                <td>
-                                    <img
-                                        :src="'/images/' + d.doctor.image"
-                                        width="80"
-                                    />
-                                </td>
-                                <td>{{ d.doctor.name }}</td>
-                                <td>{{ d.doctor.department_id }}</td>
-                                <td>
-                                    <a
-                                        :href="
-                                            '/new-appointment/' +
-                                                d.user_id +
-                                                '/' +
-                                                d.date
-                                        "
-                                        ><button class="btn btn-danger">
-                                            Đặt lịch
-                                        </button></a
-                                    >
-                                </td>
+                                    <th scope="row">{{ index + 1 }}</th>
+                                    <td>
+                                        <img
+                                            :src="'/images/' + d.doctor.image"
+                                            width="80"
+                                        />
+                                    </td>
+                                    <td>{{ d.doctor.name }}</td>
+                                    <td>{{ d.doctor.department }}</td>
+                                    <td>
+                                        <a
+                                            :href="
+                                                '/appointment/' +
+                                                    d.user_id +
+                                                    '/' +
+                                                    d.date
+                                            "
+                                            ><button class="btn btn-success">
+                                                Xem lịch khám
+                                            </button></a
+                                        >
+                                    </td>
                                 </template>
                             </tr>
                             <td v-if="doctors.length == 0">
@@ -75,15 +83,15 @@
 import datepicker from "vuejs-datepicker";
 import moment from "moment";
 import PulseLoader from "vue-spinner/src/PulseLoader.vue";
-import { vi } from 'vuejs-datepicker/dist/locale';
+import { vi } from "vuejs-datepicker/dist/locale";
 export default {
     data() {
         return {
             time: "",
             vi: vi,
             doctors: [],
-            color: '#f3547f',
-            size: '20px',
+            color: "#a5c422",
+            size: "20px",
             loading: false,
             disabledDates: {
                 to: new Date(Date.now() - 86400000)
@@ -98,7 +106,7 @@ export default {
         customDate(date) {
             this.loading = true;
 
-            this.time = moment(date).format("YYYY-MM-DD");
+            this.time = moment(date).format("DD-MM-YYYY");
             axios
                 .post("/api/finddoctors", { date: this.time })
                 .then(response => {

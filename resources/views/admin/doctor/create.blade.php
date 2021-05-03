@@ -120,10 +120,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Chuyên khoa</label>
-                                    <select name="department_id" class="form-control">
+                                    <select name="department" class="form-control">
                                         <option value="">Vui lòng chọn</option>
                                         @foreach (App\Department::all() as $d)
-                                            <option value="{{ $d->id }}">{{ $d->name_department }}</option>
+                                            <option value="{{ $d->name_department }}">{{ $d->name_department }}</option>
                                         @endforeach
                                     </select>
                                     @error('department_id')

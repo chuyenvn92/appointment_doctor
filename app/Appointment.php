@@ -15,7 +15,5 @@ class Appointment extends Model
 	public function times(){
     	return $this->hasMany(Time::class);
     }
-
-
 	
 }

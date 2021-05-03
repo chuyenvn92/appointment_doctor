@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <script src="https://use.fontawesome.com/fb7e99abe9.js"></script>
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="css/tooplate-style.css">
+    <link rel="stylesheet" href="{{ asset('css/tooplate-style.css') }}">
 
 </head>
 
@@ -68,7 +68,6 @@
                         <span class="icon icon-bar"></span>
                         <span class="icon icon-bar"></span>
                     </button>
-
                     <!-- lOGO TEXT HERE -->
                     <a href="{{ url('/') }}" class="navbar-brand"><i class="fa fa-h-square"></i>ồng Phát</a>
                 </div>
@@ -79,9 +78,9 @@
                         <li><a href="#top" class="smoothScroll">Trang chủ</a></li>
                         <li><a href="#about" class="smoothScroll">Giới thiệu</a></li>
                         <li><a href="#team" class="smoothScroll">Bác sĩ</a></li>
-                        <li><a href="#news" class="smoothScroll">Cẩm nang</a></li>
+                        {{-- <li><a href="#news" class="smoothScroll">Cẩm nang</a></li> --}}
                         <li><a href="#google-map" class="smoothScroll">Liên hệ</a></li>
-                        <li class="appointment-btn"><a href="#appointment">Đặt lịch</a></li>
+                        <li class="appointment-btn"><a href="{{ url('list-appointment') }}">Đặt lịch</a></li>
                         @guest
                             <li>
                                 <a href="#" type="button" class="smoothScroll" data-toggle="modal" data-target="#loginForm">
@@ -89,10 +88,11 @@
                                 </a>
                             </li>
                             @if (Route::has('register'))
-                                {{-- <li><a href="{{ route('register') }}" class="smoothScroll">Đăng kí</a></li> --}}
-                                <li><a href="#" type="button" class="smoothScroll" data-toggle="modal" data-target="#registerForm">
-                                    Đăng kí
-                                </a></li>
+                                <li><a href="#" type="button" class="smoothScroll" data-toggle="modal"
+                                        data-target="#registerForm">
+                                        Đăng kí
+                                    </a>
+                                </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
@@ -113,7 +113,7 @@
                                     @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                            document.getElementById('logout-form').submit();">
+                                                                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Đăng xuất') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -152,16 +152,29 @@
 
                 <div class="col-md-4 col-sm-4">
                     <div class="footer-thumb">
-                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Tin tức mới</h4>
+                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Trao y đức - Nhận niềm tin</h4>
                         <div class="latest-stories">
                             <div class="stories-image">
-                                <a href="#"><img src="images/news-image.jpg" class="img-responsive" alt=""></a>
+                                <a href="#"><img src="{{ asset('images/hongphat.png') }}" class="img-responsive"
+                                        alt=""></a>
                             </div>
                             <div class="stories-info">
                                 <a href="#">
-                                    <h5>Tiêu đề nè</h5>
+                                    <h5>30+</h5>
                                 </a>
-                                <span>24-04-2021</span>
+                                <span>Giáo sư, tiến sĩ</span>
+                            </div>
+                        </div>
+                        <div class="latest-stories">
+                            <div class="stories-image">
+                                <a href="#"><img src="{{ asset('images/anh-map-bv.png') }}" class="img-responsive"
+                                        alt=""></a>
+                            </div>
+                            <div class="stories-info">
+                                <a href="#">
+                                    <h5>60+</h5>
+                                </a>
+                                <span>Y tế điều dưỡng</span>
                             </div>
                         </div>
                     </div>
@@ -171,11 +184,11 @@
                     <div class="footer-thumb">
                         <div class="opening-hours">
                             <h4 class="wow fadeInUp" data-wow-delay="0.4s">Thời gian làm việc</h4>
-                            <p>Từ thứ 2 - Chủ nhật<span>06:00 - 10:00 </span></p>
+                            <p>Từ thứ 2 - Chủ nhật<span>06:00 - 22:00 </span></p>
                         </div>
 
                         <ul class="social-icon">
-                            <li><a href="https://www.facebook.com/tooplate" class="fa fa-facebook-square"
+                            <li><a href="https://www.facebook.com/" class="fa fa-facebook-square"
                                     attr="facebook icon"></a></li>
                             <li><a href="#" class="fa fa-twitter"></a></li>
                             <li><a href="#" class="fa fa-instagram"></a></li>
@@ -310,7 +323,8 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Tên') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -321,10 +335,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                            <label for="email"
+                                class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -335,10 +351,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Mật khẩu') }}</label>
+                            <label for="password"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Mật khẩu') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -349,16 +368,19 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Nhập lại mật khẩu') }}</label>
+                            <label for="password-confirm"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Nhập lại mật khẩu') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control"
+                                    name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Giới tính') }}</label>
+                            <label for="password-confirm"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Giới tính') }}</label>
 
                             <div class="col-md-6">
                                 <select name="gender" class="form-control @error('gender') is-invalid @enderror">
@@ -368,11 +390,11 @@
                                 </select>
                             </div>
 
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            @error('gender')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
 
@@ -402,7 +424,26 @@
     <script src="{{ asset('js/smoothscroll.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        @if(Session::has('messege'))
+        var type = "{{Session::get('alert-type','info')}}"
+        switch (type) {
+            case 'info':
+                toastr.info("{{ Session::get('messege') }}");
+                break;
+            case 'success':
+                toastr.success("{{ Session::get('messege') }}");
+                break;
+            case 'warning':
+                toastr.warning("{{ Session::get('messege') }}");
+                break;
+            case 'error':
+                toastr.error("{{ Session::get('messege') }}");
+                break;
+        }
+        @endif
+    </script>
 </body>
 
 </html>

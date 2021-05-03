@@ -16,10 +16,10 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="ik ik-home"></i></a>
+                            <a href=""><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#">Bác sĩ</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Appointment</li>
+                        <li class="breadcrumb-item active" aria-current="page">Tạo lịch hẹn</li>
                     </ol>
                 </nav>
             </div>
@@ -64,9 +64,9 @@
                         <tbody>
                             <tr>
                                 <th scope="row">1</th>
-                                <td><input type="checkbox" name="time[]" value="6am">6am</td>
-                                <td><input type="checkbox" name="time[]" value="6.20am">6.20am</td>
-                                <td><input type="checkbox" name="time[]" value="6.40am">6.40am</td>
+                                <td><input type="checkbox" name="time[]" value="06:00am">06:00am</td>
+                                <td><input type="checkbox" name="time[]" value="06:20am">06:20am</td>
+                                <td><input type="checkbox" name="time[]" value="06:40am">06:40am</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
@@ -197,7 +197,5 @@
         }
 
     </style>
-
-
 
 @endsection

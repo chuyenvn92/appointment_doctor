@@ -8,23 +8,6 @@
 
                         Số lượt đặt khám: ({{ $bookings->count() }})
                     </div>
-                    <form action="{{ route('patient') }}" method="GET">
-
-                        <div class="card-header">
-                            Lọc:
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control datetimepicker-input" id="datepicker"
-                                        data-toggle="datetimepicker" data-target="#datepicker" name="date">
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary">Tìm</button>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
                     <div class="card-body">
                         <table id="data_table" class="table table-striped">
                             <thead>
@@ -52,13 +35,13 @@
                                         <td>{{ $booking->doctor->name }}</td>
                                         <td>
                                             @if ($booking->status == 0)
-                                                {{-- <a href="{{ route('update.status', [$booking->id]) }}"> --}}
-                                                    <button class="btn btn-primary">Chưa khám</button>
-                                                {{-- </a> --}}
+                                                <a href="{{ route('update.status', [$booking->id]) }}">
+                                                    <button class="btn btn-primary">Chờ xác nhận</button>
+                                                </a>
                                             @else
-                                                {{-- <a href="{{ route('update.status', [$booking->id]) }}"> --}}
+                                                <a href="{{ route('update.status', [$booking->id]) }}">
                                                     <button class="btn btn-success">Đã khám</button>
-                                                {{-- </a> --}}
+                                                </a>
                                             @endif
                                         </td>
                                         <td>

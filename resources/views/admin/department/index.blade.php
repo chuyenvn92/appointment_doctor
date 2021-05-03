@@ -38,10 +38,6 @@
                 </div>
             @endif
             <div class="card">
-                <div class="card-header">
-                    <h3>Danh sách chuyên khoa</h3>
-
-                </div>
                 <div class="card-body">
                     <table id="data_table" class="table">
                         <thead>
@@ -75,7 +71,6 @@
                                             </div>
                                         </td>
                                         <td>x</td>
-
                                     </tr>
                                 @endforeach
                             @else
