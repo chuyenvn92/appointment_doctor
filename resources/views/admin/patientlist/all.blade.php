@@ -5,11 +5,10 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
-
                         Tổng số lượt đặt khám: ({{ $bookings->count() }})
                     </div>
                     <div class="card-body">
-                        <table id="data_table" class="table table-striped">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -33,17 +32,17 @@
                                         <td>{{ $booking->user->name }}</td>
                                         <td>{{ $booking->time }}</td>
                                         <td>{{ $booking->doctor->name }}</td>
-                                        {{-- <td> --}}
-                                        @if ($booking->status == 0)
-                                            {{-- <a href="{{ route('update.status', [$booking->id]) }}"> --}}
-                                            <td><button class="btn btn-primary">Chờ khám</button></td>
-                                            {{-- </a> --}}
-                                        @else
-                                            {{-- <a href="{{ route('update.status', [$booking->id]) }}"> --}}
-                                            <td><button class="btn btn-success">Đã khám</button></td>
-                                            {{-- </a> --}}
-                                        @endif
-                                        {{-- </td> --}}
+                                        <td>
+                                            @if ($booking->status == 0)
+                                                <span class="btn btn-warning">Chờ xử lí</span>
+                                            @elseif ($booking->status == 1)
+                                                <span class="btn btn-info">Đã xác nhận</span>
+                                            @elseif ($booking->status == 2)
+                                                <span class="btn btn-info">Đã khám</span>
+                                            @else
+                                                <span class="btn btn-danger">Đã huỷ</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="table-actions">
                                                 <a href="#" data-toggle="modal"

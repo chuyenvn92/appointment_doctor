@@ -28,7 +28,7 @@
 
                             <div class="form-group row">
                                 <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Mật khẩu') }}</label>
+                                    class="col-md-3 col-form-label text-md-right">{{ __('Mật khẩu') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
@@ -76,26 +76,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="login">
-        <div class="login-triangle"></div>
-
-        <h2 class="login-header">Đăng nhập</h2>
-
-        <form class="login-container" method="POST" action="{{ route('login') }}">
-            @csrf
-            <p>
-                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                    value="{{ old('email') }}" placeholder="Địa chỉ email" required autocomplete="email" autofocus>
-
-                
-            </p>
-            @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            <p><input type="password" placeholder="Mật khẩu"></p>
-            <p><input type="submit" value="Đăng nhập"></p>
-        </form>
-    </div> --}}
 @endsection

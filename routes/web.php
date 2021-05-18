@@ -14,13 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/event','EventCalender@index');
 
 Route::get('/','FrontendController@index');
 
 Route::get('/list-appointment','FrontendController@listAppointment');
 
 Route::post('/store-guest','FrontendController@storeGuest')->name('store.guest');
+
+Route::get('/doctor/detail/{id}','FrontendController@DoctorView');
+
+Route::get('/department/show','FrontendController@DepartmentShow')->name('departmentshow');
+
+Route::get('/doctor/show','FrontendController@DoctorShow')->name('doctorshow');
 
 Route::get('/appointment/{doctorId}/{date}','FrontendController@show')->name('create.appointment');
 
@@ -51,7 +56,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware'=>['auth','admin']],function(){
 	Route::resource('doctor','DoctorController');
 	Route::resource('guest','GuestController');
-	Route::get('/patients','PatientlistController@index')->name('patient');
+	Route::post('/doctor/search','DoctorController@SearchDoctor')->name('search.doctor');
+	Route::get('/patients/pending','PatientlistController@pending')->name('patient');
+	Route::get('/patients/confirmed','PatientlistController@confirmed')->name('confirmed');
+	Route::get('/patients/done','PatientlistController@doneBooking')->name('doneBooking');
+	Route::get('/patients/cancel','PatientlistController@cancelBooking')->name('cancelBooking');
 	Route::get('/patients/all','PatientlistController@allTimeAppointment')->name('all.appointments');
 	Route::get('/status/update/{id}','PatientlistController@toggleStatus')->name('update.status');
 	Route::resource('department','DepartmentController');
@@ -66,11 +75,17 @@ Route::group(['middleware'=>['auth','doctor']],function(){
 	Route::post('/appointment/update','AppointmentController@updateTime')->name('update');
 
 	// Route for accept booking appointment
-	Route::get('/patients/booking','PatientlistController@showBooking')->name('patient.index');
-	Route::get('/status/update/{id}','PatientlistController@toggleStatus')->name('update.status');
+	Route::get('/patients/booking/pending/today','PatientlistController@showPendingTodayBooking')->name('patient.pendingtoday');
+	Route::get('/patients/booking/pending/all','PatientlistController@showPendingAllBooking')->name('patient.pendingall');
+	Route::get('/patients/booking/confirmed/all','PatientlistController@showConfirmedAllBooking')->name('patient.confirmedall');
+	Route::get('/patients/booking/cancel/all','PatientlistController@showCancelAllBooking')->name('patient.cancelall');
+	Route::post('/status/accept/booking','PatientlistController@acceptBooking')->name('accept.booking');
+	Route::post('/status/cancel/booking','PatientlistController@ignoreBooking')->name('ignore.booking');
+	Route::get('/status/success/booking/{id}','PatientlistController@successBooking');
 	Route::get('/patients/allbooking','PatientlistController@showAllBooking')->name('patient.all');
 	// Rpute for print PDF
 	Route::get('/generatePDF/{userId}/{date}','PatientlistController@generatePDF')->name('patient.generatePDF');
+	Route::post('/send/prescription','PatientlistController@sendPrescription')->name('send.prescription');
 
 	Route::get('patient-today','PrescriptionController@index')->name('patients.today');
 
@@ -78,6 +93,7 @@ Route::group(['middleware'=>['auth','doctor']],function(){
 
 	Route::get('/prescription/{userId}/{date}','PrescriptionController@show')->name('prescription.show');
 	Route::get('/prescribed-patients','PrescriptionController@patientsFromPrescription')->name('prescribed.patients');
+	Route::get('/not-yet/prescribed','PrescriptionController@notPrescribed')->name('prescribed.all');
 
 
 });

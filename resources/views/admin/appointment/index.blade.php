@@ -55,7 +55,7 @@
                 <div class="card-header">
                     @if (isset($date))
                         Lịch khám của ngày:
-                        {{ $date }}
+                        {{ date('d-m-Y', strtotime($date)) }}
                     @endif
                 </div>
                 <div class="card-body">
@@ -211,7 +211,7 @@
     </form>
 
 @else
-    <h3>Tổng số lịch khám của bạn: {{ $myappointments->count() }}</h3>
+    <h3>Tổng số lịch khám của bạn: {{ $all->count() }}</h3>
 
     <table class="table table-striped">
         <thead>
@@ -226,22 +226,27 @@
 
             @foreach ($myappointments as $appoinment)
                 <tr>
-
                     <th scope="row"></th>
                     <td>{{ $appoinment->doctor->name }}</td>
-                    <td>{{ $appoinment->date }}</td>
+                    <td>{{ date('d-m-Y', strtotime($appoinment->date)) }}</td>
                     <td>
                         <form action="{{ route('appointment.check') }}" method="post">@csrf
                             <input type="hidden" name="date" value="{{ $appoinment->date }}">
                             <button type="submit" class="btn btn-primary">Xem/Cập nhật</button>
                         </form>
                     </td>
+                    <td>
+                        <a href="{{ route('appointment.show', [$appoinment->id]) }}">
+                            <i class="ik ik-trash-2"></i>
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">{!! $myappointments->links() !!}</div>
     @endif
-    
+
     <style type="text/css">
         input[type="checkbox"] {
             zoom: 1.1;

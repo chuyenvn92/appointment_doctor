@@ -24,7 +24,9 @@
                        <p>Số điện thoại: {{ $user->phone_number }}</p>
                        <p>Chuyên khoa: {{ $user->department }}</p>
                        <p>Trình độ: {{ $user->education }}</p>
-                       <p>Giới thiệu chi tiết: {{ $user->description }}</p>
+                       <p>Giới thiệu chi tiết: {!! $user->description !!}</p>
+                       <p>Khám và điều trị: {!! $user->treatment !!}</p>
+                       <p>Dịch vụ: {!! $user->service !!}</p>
                    </div>
                    <div class="modal-footer">
                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>

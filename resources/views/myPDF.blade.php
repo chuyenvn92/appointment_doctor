@@ -16,8 +16,9 @@
             padding: 0;
             margin: 0 auto;
             box-sizing: border-box;
-            font-family: DejaVu Sans;
         }
+
+
 
         /* ==== GRID SYSTEM ==== */
         .container {
@@ -174,24 +175,20 @@
 <body>
     <div class="container">
         <header class="row">
-            <div class="col-md-10">
-                {{-- <div class="doc-details">
-                    <p class="doc-name">Bệnh viện đa khoa Hồng Phát</p>
-                    <p class="doc-meta">Địa chỉ: 219 Lê Duẩn - Hai Bà Trưng - Hà Nội
-                    </p>
-                    <p class="doc-meta">Trao y đức - Nhận niềm tin</p>
+            <div class="col-8">
+                <div class="doc-details">
+                    <p class="doc-name">Bác sĩ: {{ $data['doctor']['name'] }}</p>
+                    <p class="doc-meta">Chuyên khoa: Cơ xương khớp</p>
                 </div>
 
                 <div class="clinic-details">
-                    <p class="doc-meta">Bác sĩ chuẩn đoán</p>
-                    <p class="doc-meta">{{ $data['doctor']['name'] }}</p>
-                </div> --}}
-                <h3>Bệnh viện đa khoa Hồng Phát</h3>
+                    <p class="doc-meta">Địa chỉ bệnh viện</p>
+                    <p class="doc-meta">219 Lê Duẩn - Hai Bà Trưng - Hà Nội</p>
+                </div>
 
             </div>
-            <div class="col-md-2">
-                <p>Ngày khám: {{ $data['date'] }}</p>
-                {{-- <p>Time: 03:13</p> --}}
+            <div class="col-4 datetime">
+                <p>Ngày: {{ $data['date'] }}</p>
             </div>
         </header>
         <div class="prescription">
@@ -199,10 +196,11 @@
             <table>
                 <tr>
                     <th></th>
-                    <th>Tên bệnh</th>
+                    <th>Chuẩn đoán</th>
                     <th>Triệu chứng</th>
-                    <th>Loại thuốc</th>
-                    <th>Cách sử dụng</th>
+                    <th>Thuốc</th>
+                    <th>Cách dùng</th>
+                    <th>Ghi chú</th>
                 </tr>
                 <tr>
                     <td>1.</td>
@@ -210,26 +208,17 @@
                     <td>{{ $data['symptoms'] }}</td>
                     <td>{{ $data['medicine'] }}</td>
                     <td>{{ $data['procedure_to_use_medicine'] }}</td>
+                    <td>{{ $data['feedback'] }}</td>
                 </tr>
+
             </table>
-            {{-- <p>Ghi chú: {{ $data['feedback'] }}</p> --}}
+
+
         </div>
 
-        {{-- <p style="font-size:9px;text-align:right;padding-bottom:15px;padding-right:25px;">{{ $data['signature'] }} --}}
-        </p>
-        {{-- <p style="font-size:6px;text-align:center;padding-bottom:20px;">Bản đưa bệnh nhân không có dấu đỏ</p> --}}
+        <p style="font-size:9px;text-align:right;padding-bottom:15px;padding-right:25px;">Bác sĩ
+            {{ $data['signature'] }}</p>
     </div>
-
-    {{-- <p>Ngày tháng: {{ $data['date'] }}</p>
-    <p>Bệnh nhân: {{ $data['user']['name'] }}</p>
-    <p>Bác sĩ: {{ $data['doctor']['name'] }}</p>
-    <p>Tên bệnh: {{ $data['name_of_disease'] }}</p>
-    <p>Triệu chứng: {{ $data['symptoms'] }}</p>
-    <p>Loại thuốc: {{ $data['medicine'] }}</p>
-    <p>Cách sử dụng: {{ $data['procedure_to_use_medicine'] }}</p>
-    <p>Ghi chú: {{ $data['feedback'] }}</p>
-    <p>Chữ kí:{{ $data['signature'] }}</p> --}}
-    <script type="text/javascript" src="{{ public_path('js/bootstrap.min.js') }}"></script>
 </body>
 
 </html>

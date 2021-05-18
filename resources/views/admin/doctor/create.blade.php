@@ -17,9 +17,11 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="ik ik-home"></i></a>
+                            <a href="{{ url('/dashboard') }}"><i class="ik ik-home"></i></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Bác sĩ</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ url('/doctor') }}">Bác sĩ</a>
+                        </li>
                         <li class="breadcrumb-item active" aria-current="page">Create</li>
                     </ol>
                 </nav>
@@ -92,7 +94,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <label for="">Trình độ</label>
                                 <input type="text" name="education"
                                     class="form-control @error('education') is-invalid @enderror"
@@ -103,12 +105,22 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <label for="">Địa chỉ</label>
                                 <input type="text" name="address"
                                     class="form-control @error('address') is-invalid @enderror"
                                     value="{{ old('address') }}">
                                 @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="">Giá khám</label>
+                                <input type="number" name="price" class="form-control @error('price') is-invalid @enderror"
+                                    value="{{ old('price') }}">
+                                @error('price')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -123,7 +135,8 @@
                                     <select name="department" class="form-control">
                                         <option value="">Vui lòng chọn</option>
                                         @foreach (App\Department::all() as $d)
-                                            <option value="{{ $d->name_department }}">{{ $d->name_department }}</option>
+                                            <option value="{{ $d->name_department }}">{{ $d->name_department }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('department_id')
@@ -172,9 +185,9 @@
                                     <option value="">Vui lòng chọn</option>
                                     @foreach (App\Role::where('name_role', '!=', 'patient')->get() as $role)
                                         @if ($role->name_role == 'admin')
-                                        <option value="1">Bác sĩ</option>
-                                        @else 
-                                        <option value="2">Quản trị hệ thống</option>
+                                            <option value="1">Bác sĩ</option>
+                                        @else
+                                            <option value="2">Quản trị hệ thống</option>
                                         @endif
                                     @endforeach
 
@@ -188,9 +201,29 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Thông tin</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="exampleTextarea1"
-                                rows="4" name="description">{{ old('description') }}</textarea>
+                            <textarea class="ckeditor @error('description') is-invalid @enderror" rows="50" cols="150"
+                                id="exampleTextarea1" rows="4" name="description">{{ old('description') }}</textarea>
                             @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Khám và điều trị</label>
+                            <textarea class="ckeditor @error('treatment') is-invalid @enderror" rows="50" cols="150"
+                                id="exampleTextarea1" rows="4" name="treatment">{{ old('treatment') }}</textarea>
+                            @error('treatment')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Dịch vụ liên quan</label>
+                            <textarea class="ckeditor @error('service') is-invalid @enderror" rows="50" cols="150"
+                                id="exampleTextarea1" rows="4" name="service">{{ old('service') }}</textarea>
+                            @error('service')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

@@ -15,9 +15,10 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $myappointments = Appointment::latest()->where('user_id',auth()->user()->id)->get();
+        $myappointments = Appointment::where('user_id',auth()->user()->id)->orderBy('id', 'DESC')->paginate(10);
+        $all = Appointment::where('user_id',auth()->user()->id)->get();
         
-        return view('admin.appointment.index',compact('myappointments'));
+        return view('admin.appointment.index',compact('myappointments', 'all'));
 
     }
 
@@ -51,10 +52,10 @@ class AppointmentController extends Controller
             Time::create([
                 'appointment_id'=> $appointment->id,
                 'time'=> $time,
-                //'stauts'=>0
+                'status'=>0
             ]);
         }
-        return redirect()->back()->with('message','Tạo thành công lịch hẹn khám cho ngày '. $request->date);
+        return redirect()->back()->with('message','Tạo thành công lịch hẹn khám cho ngày '. date('d-m-Y', strtotime($request->date)));
        
     }
 
@@ -66,7 +67,8 @@ class AppointmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $appointment = Appointment::find($id);
+        return view('admin.appointment.delete',compact('appointment'));
     }
 
     /**
@@ -100,13 +102,15 @@ class AppointmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $appointment = Appointment::find($id);
+        $appointment->delete();
+        return redirect()->route('appointment.index')->with('message','Xoá thành công');
     }
 
     public function check(Request $request){
 
         $date = $request->date;
-        $appointment= Appointment::where('date',$date)->where('user_id',auth()->user()->id)->first();
+        $appointment= Appointment::where('date', $date)->where('user_id',auth()->user()->id)->first();
         if(!$appointment){
             return redirect()->to('/appointment')->with('errmessage','Không có lịch khám cho ngày bạn chọn');
         }

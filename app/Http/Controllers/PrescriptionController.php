@@ -9,9 +9,14 @@ class PrescriptionController extends Controller
 {
     public function index()
     {
-    	date_default_timezone_set('Asia/Ho_Chi_Minh');
-		$bookings =  Booking::where('date',date('d-m-Y'))->where('status',1)->where('doctor_id',auth()->user()->id)->get();
+		$bookings =  Booking::where('date',date('Y-m-d'))->where('status',2)->where('doctor_id',auth()->user()->id)->get();
 		return view('admin.prescription.index',compact('bookings'));
+    }
+
+    public function notPrescribed()
+    {
+		$bookings =  Booking::where('status',2)->where('doctor_id',auth()->user()->id)->get();
+		return view('admin.prescription.notprescribed',compact('bookings'));
     }
    
 
@@ -32,7 +37,7 @@ class PrescriptionController extends Controller
     //get all patients from prescription table
     public function patientsFromPrescription()
     {
-        $patients = Prescription::get();
+        $patients = Prescription::orderBy('id', 'DESC')->get();
         return view('admin.prescription.all',compact('patients'));
     }
 

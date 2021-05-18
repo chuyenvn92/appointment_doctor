@@ -15,6 +15,7 @@
      window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')
 
  </script>
+ <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
  <script src="{{ asset('template/plugins/popper.js/dist/umd/popper.min.js') }}"></script>
  <script src="{{ asset('template/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
  <script src="{{ asset('template/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
@@ -29,7 +30,7 @@
  <script type="text/javascript">
      $(document).ready(function() {
          $("#datepicker").datetimepicker({
-             format: 'DD-MM-YYYY'
+             format: 'YYYY-MM-DD'
          });
         //  var d = new Date();
 

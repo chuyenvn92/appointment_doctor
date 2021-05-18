@@ -13,7 +13,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::get();
+        $departments = Department::paginate(5);
         return view('admin.department.index',compact('departments'));
     }
 
@@ -55,7 +55,8 @@ class DepartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $department = Department::find($id);
+        return view('admin.department.delete',compact('department'));
     }
 
     /**
@@ -99,8 +100,11 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        $department = Department::find($id);
-        $department->delete();
-        return redirect()->route('department.index')->with('message','Xóa chuyên khoa thành công');
+       $department = Department::find($id);
+       $departmentDelete = $department->delete();
+       if($departmentDelete){
+        unlink(public_path('images/'.$department->image));
+       }
+        return redirect()->route('department.index')->with('message','Xoá chuyên khoa thành công');
     }
 }

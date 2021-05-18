@@ -5,13 +5,11 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
-
                         Số lượt đặt khám: ({{ $bookings->count() }})
                     </div>
                     <form action="{{ route('patient') }}" method="GET">
-
                         <div class="card-header">
-                            Lọc:
+                            Lượt khám theo ngày:
                             <div class="row">
                                 <div class="col-md-10">
                                     <input type="text" class="form-control datetimepicker-input" id="datepicker"
@@ -19,14 +17,12 @@
                                 </div>
                                 <div class="col-md-2">
                                     <button type="submit" class="btn btn-primary">Tìm</button>
-
                                 </div>
                             </div>
-
                         </div>
                     </form>
                     <div class="card-body">
-                        <table id="data_table" class="table table-striped">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">STT</th>
@@ -43,7 +39,7 @@
                                 @forelse($bookings as $key=>$booking)
                                     <tr>
                                         <th scope="row">{{ $key + 1 }}</th>
-                                        <td><img src="/profile/{{ $booking->user->image }}" width="80"
+                                        <td><img src="{{ asset('profile') }}/{{ $booking->user->image }}" width="80"
                                                 style="border-radius: 50%;" alt="Ảnh đại diện">
                                         </td>
                                         <td>{{ $booking->date }}</td>
@@ -52,13 +48,13 @@
                                         <td>{{ $booking->doctor->name }}</td>
                                         <td>
                                             @if ($booking->status == 0)
-                                                {{-- <a href="{{ route('update.status', [$booking->id]) }}"> --}}
-                                                    <button class="btn btn-primary">Chưa khám</button>
-                                                {{-- </a> --}}
+                                                <span class="btn btn-warning">Chờ xử lí</span>
+                                            @elseif ($booking->status == 1)
+                                                <span class="btn btn-info">Đã xác nhận</span>
+                                            @elseif ($booking->status == 2)
+                                                <span class="btn btn-info">Đã khám</span>
                                             @else
-                                                {{-- <a href="{{ route('update.status', [$booking->id]) }}"> --}}
-                                                    <button class="btn btn-success">Đã khám</button>
-                                                {{-- </a> --}}
+                                                <span class="btn btn-danger">Đã huỷ</span>
                                             @endif
                                         </td>
                                         <td>
@@ -70,10 +66,11 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <!-- View Modal -->
+                                    @include('admin.patientlist.model')
                                 @empty
                                     <td>Không tìm thấy lịch hẹn khám nào</td>
                                 @endforelse
-
                             </tbody>
                         </table>
                     </div>

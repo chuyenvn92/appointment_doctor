@@ -7,6 +7,7 @@ use App\Appointment;
 use App\Time;
 use App\User;
 use App\Booking;
+use App\Department;
 use DB;
 use App\Guest;
 use App\Prescription;
@@ -92,6 +93,8 @@ class FrontendController extends Controller
           );
         return Redirect()->back()->with($notification);
     }
+
+    
     public function storeGuest(Request $request)
     {
         Guest::create([
@@ -143,20 +146,22 @@ class FrontendController extends Controller
         return $doctors;
     }
 
+    public function DoctorView($id)
+    {
+        $doctor = User::where('id',$id)->first();
+        return view('doctor-detail', compact('doctor'));
+    }
 
+    public function DepartmentShow()
+    {
+        $departments = Department::get();
+        return view('department', compact('departments'));
+    }
 
-
-
-
-  
-   
-
-    
-
-
-
-   
-
-
+    public function DoctorShow()
+    {
+        $doctors = User::where('role_id', 1)->get();
+        return view('doctor', compact('doctors'));
+    }
 
 }

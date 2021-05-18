@@ -6,3 +6,17 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+.vdp-datepicker {
+    &.fullscreen-when-on-mobile {
+        @media (max-width: 767px) {
+            position: static;
+            .vdp-datepicker__calendar {
+                position: fixed;
+                top: 50%;
+                left: 5%;
+                margin-top: -25%;
+                width: 90%;
+            }
+        }
+    }
+}

@@ -1,449 +1,366 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
 
 <head>
-
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Bệnh viện đa khoa Hồng Phát</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="Tooplate">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png')}}">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
-    <script src="https://use.fontawesome.com/fb7e99abe9.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/gijgo.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
-
-    <!-- MAIN CSS -->
-    <link rel="stylesheet" href="{{ asset('css/tooplate-style.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
 </head>
 
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<body>
+    <div id="app">
+        @php
+            $specialists = DB::table('departments')
+                ->orderBy('id', 'desc')
+                ->get();
+        @endphp
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
 
-    <!-- PRE LOADER -->
-    <section class="preloader">
-        <div class="spinner">
-
-            <span class="spinner-rotate"></span>
-
-        </div>
-    </section>
-
-    <div id=app>
-        <!-- HEADER -->
+        <!-- header-start -->
         <header>
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-4 col-sm-5">
-                        <p>Trang đặt lịch khám bệnh viện đa khoa Hồng Phát</p>
+            <div class="header-area ">
+                <div class="header-top_area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6 ">
+                                <div class="social_media_links">
+                                    <a href="#">
+                                        <i class="fa fa-linkedin"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa fa-facebook"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa fa-google-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6">
+                                <div class="short_contact_list">
+                                    <ul>
+                                        <li><a href="#"> <i class="fa fa-envelope"></i> chuyendaik99@gmail.com</a></li>
+                                        <li><a href="#"> <i class="fa fa-phone"></i>0349982248</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div id="sticky-header" class="main-header-area">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-xl-3 col-lg-2">
+                                <div class="logo">
+                                    <a href="{{ '/' }}">
+                                        <h2><i class="fa fa-h-square"></i>ồng Phát</h2>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xl-7 col-lg-7">
+                                <div class="main-menu  d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a class="active" href="{{ '/' }}">Trang chủ</a></li>
+                                            <li><a href="{{ route('departmentshow') }}">Chuyên khoa</a></li>
+                                            <li><a href="{{ route('doctorshow') }}">Bác sĩ</a></li>
+                                            @guest
+                                                <li>
+                                                    <a href="{{ route('login') }}">
+                                                        Đăng nhập
+                                                    </a>
+                                                </li>
+                                                @if (Route::has('register'))
+                                                    <li>
+                                                        <a href="{{ route('register') }}">
+                                                            Đăng kí
+                                                        </a>
+                                                    </li>
+                                                @endif
+                                            @else
+                                                <li class="nav-item dropdown">
+                                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
+                                                        role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false" v-pre>
+                                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                                    </a>
 
-                    <div class="col-md-8 col-sm-7 text-align-right">
-                        <span class="phone-icon"><i class="fa fa-phone"></i>0349982248</span>
-                        <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 06:00 - 10:00 (CẢ TUẦN)</span>
-                        <span class="email-icon"><i class="fa fa-envelope-o"></i> <a
-                                href="#">maicongchuyentb@gmail.com</a></span>
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="navbarDropdown">
+                                                        @if (auth()->check() && auth()->user()->role->name_role == 'patient')
+                                                            <a href="{{ url('user-profile') }}"
+                                                                class="dropdown-item">Thông tin cá nhân</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('my.booking') }}">{{ __('Lịch khám bệnh') }}</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('my.prescription') }}">{{ __('Chuẩn đoán') }}</a>
+                                                        @else
+                                                            <a href="{{ url('dashboard') }}" class="dropdown-item">Đến
+                                                                trang quản trị</a>
+                                                        @endif
+                                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                            onclick="event.preventDefault();
+                                                                                                                        document.getElementById('logout-form').submit();">
+                                                            {{ __('Đăng xuất') }}
+                                                        </a>
+                                                        <form id="logout-form" action="{{ route('logout') }}"
+                                                            method="POST" style="display: none;">
+                                                            @csrf
+                                                        </form>
+                                                    </div>
+                                                </li>
+                                            @endguest
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 d-none d-lg-block">
+                                <div class="Appointment">
+                                    <div class="book_btn d-none d-lg-block">
+                                        <a href="{{ url('list-appointment') }}">Đặt lịch hẹn</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </header>
+        <!-- header-end -->
 
+        @yield('content')
 
-        <!-- MENU -->
-        <section class="navbar navbar-default navbar-static-top" role="navigation">
-            <div class="container">
-
-                <div class="navbar-header">
-                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon icon-bar"></span>
-                        <span class="icon icon-bar"></span>
-                        <span class="icon icon-bar"></span>
-                    </button>
-                    <!-- lOGO TEXT HERE -->
-                    <a href="{{ url('/') }}" class="navbar-brand"><i class="fa fa-h-square"></i>ồng Phát</a>
+        <!-- Emergency_contact start -->
+        <div class="Emergency_contact">
+            <div class="conatiner-fluid p-0">
+                <div class="row no-gutters">
+                    <div class="col-xl-6">
+                        <div
+                            class="single_emergency d-flex align-items-center justify-content-center emergency_bg_1 overlay_skyblue">
+                            <div class="info">
+                                <h3>Liên hệ đặt khám</h3>
+                                <p>Đường dây nóng hỗ trợ 24/7</p>
+                            </div>
+                            <div class="info_button">
+                                <a href="#" class="boxed-btn3-white">+84 349 982 248</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div
+                            class="single_emergency d-flex align-items-center justify-content-center emergency_bg_2 overlay_skyblue">
+                            <div class="info">
+                                <h3>Đặt lịch trực tiếp</h3>
+                                <p>Gửi yêu cầu đặt lịch không cần tạo tài khoản</p>
+                            </div>
+                            <div class="info_button">
+                                <a href="#test-form" class="boxed-btn3-white popup-with-form">Đặt lịch ngay</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <!-- Emergency_contact end -->
 
-                <!-- MENU LINKS -->
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#top" class="smoothScroll">Trang chủ</a></li>
-                        <li><a href="#about" class="smoothScroll">Giới thiệu</a></li>
-                        <li><a href="#team" class="smoothScroll">Bác sĩ</a></li>
-                        {{-- <li><a href="#news" class="smoothScroll">Cẩm nang</a></li> --}}
-                        <li><a href="#google-map" class="smoothScroll">Liên hệ</a></li>
-                        <li class="appointment-btn"><a href="{{ url('list-appointment') }}">Đặt lịch</a></li>
-                        @guest
-                            <li>
-                                <a href="#" type="button" class="smoothScroll" data-toggle="modal" data-target="#loginForm">
-                                    Đăng nhập
-                                </a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li><a href="#" type="button" class="smoothScroll" data-toggle="modal"
-                                        data-target="#registerForm">
-                                        Đăng kí
-                                    </a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (auth()->check() && auth()->user()->role->name_role == 'patient')
-                                        <a href="{{ url('user-profile') }}" class="dropdown-item">Thông tin cá nhân</a>
-                                        <a class="dropdown-item"
-                                            href="{{ route('my.booking') }}">{{ __('Lịch khám bệnh') }}</a>
-                                        <a class="dropdown-item"
-                                            href="{{ route('my.prescription') }}">{{ __('Chuẩn đoán') }}</a>
-                                    @else
-                                        <a href="{{ url('dashboard') }}" class="dropdown-item">Đến trang quản trị</a>
-                                    @endif
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                    document.getElementById('logout-form').submit();">
-                                        {{ __('Đăng xuất') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
+        <!-- footer start -->
+        <footer class="footer">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6 col-lg-4">
+                            <div class="footer_widget">
+                                <p>
+                                    Đồ án đặt hẹn lịch khám bác sĩ Bệnh viện đa khoa Hồng Phát
+                                </p>
+                                <div class="socail_links">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ti-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ti-twitter-alt"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </li>
-                        @endguest
-                    </ul>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Chuyên Khoa
+                                </h3>
+                                <ul>
+                                    @foreach ($specialists as $specialist)
+                                        <li><a href="#">{{ $specialist->name_department }}</a></li>
+                                    @endforeach
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6 col-lg-2">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Link
+                                </h3>
+                                <ul>
+                                    <li><a href="#">Trang chủ</a></li>
+                                    <li><a href="#">Chuyên khoa</a></li>
+                                    <li><a href="#">Bác sĩ</a></li>
+                                    <li><a href="#">Liên hệ</a></li>
+                                    <li><a href="#">Đặt lịch hẹn</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-lg-3">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Địa chỉ
+                                </h3>
+                                <p>
+                                    219 Lê Duẩn - Hai Bà Trưng - Hà Nội<br>
+                                    096 227 9115 <br>
+                                    cskh@benhvienhongphat.vn
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-        <main>
-            @yield('content')
+        </footer>
+        <!-- footer end  -->
+        <!-- link that opens popup -->
 
-        </main>
-    </div>
+        <!-- form itself end-->
+        <form id="test-form" class="white-popup-block mfp-hide" role="form" action="{{ route('store.guest') }}"
+            method="post">
+            @csrf
+            <div class="popup_box ">
+                <div class="popup_inner">
+                    <h3>Đặt lịch khám nhanh</h3>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Họ tên đầy đủ">
+                        </div>
 
+                        <div class="col-md-6 col-sm-6">
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="Địa chỉ Email">
+                        </div>
 
-    <!-- FOOTER -->
-    <footer data-stellar-background-ratio="5">
-        <div class="container">
-            <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <input type="date" name="date" value="" class="form-control">
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <select class="form-control" name="specialist">
+                                <option data-display="specialist">Chuyên khoa</option>
+                                @foreach ($specialists as $specialist)
+                                    <option>{{ $specialist->name_department }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-                <div class="col-md-4 col-sm-4">
-                    <div class="footer-thumb">
-                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Thông tin liên hệ</h4>
-                        <p>Địa chỉ: 219 Lê Duẩn - Hai Bà Trưng - Hà Nội</p>
-                        <div class="contact-info">
-                            <p><i class="fa fa-phone"></i> (024) 3942 9999</p>
-                            <p><i class="fa fa-envelope-o"></i> <a href="#">cskh@benhvienhongphat.vn</a></p>
+                        <div class="col-md-12 col-sm-12">
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="Số điện thoại">
+                            <textarea class="form-control" rows="5" id="message" name="message"
+                                placeholder="Ghi chú"></textarea>
+                            <button type="submit" class="form-control boxed-btn3" name="submit">Gửi
+                                yêu cầu
+                            </button>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="footer-thumb">
-                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Trao y đức - Nhận niềm tin</h4>
-                        <div class="latest-stories">
-                            <div class="stories-image">
-                                <a href="#"><img src="{{ asset('images/hongphat.png') }}" class="img-responsive"
-                                        alt=""></a>
-                            </div>
-                            <div class="stories-info">
-                                <a href="#">
-                                    <h5>30+</h5>
-                                </a>
-                                <span>Giáo sư, tiến sĩ</span>
-                            </div>
-                        </div>
-                        <div class="latest-stories">
-                            <div class="stories-image">
-                                <a href="#"><img src="{{ asset('images/anh-map-bv.png') }}" class="img-responsive"
-                                        alt=""></a>
-                            </div>
-                            <div class="stories-info">
-                                <a href="#">
-                                    <h5>60+</h5>
-                                </a>
-                                <span>Y tế điều dưỡng</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                    <div class="footer-thumb">
-                        <div class="opening-hours">
-                            <h4 class="wow fadeInUp" data-wow-delay="0.4s">Thời gian làm việc</h4>
-                            <p>Từ thứ 2 - Chủ nhật<span>06:00 - 22:00 </span></p>
-                        </div>
-
-                        <ul class="social-icon">
-                            <li><a href="https://www.facebook.com/" class="fa fa-facebook-square"
-                                    attr="facebook icon"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-instagram"></a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-12 col-sm-12 border-top">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="copyright-text">
-                            <p>Đồ án Đặt lịch hẹn khám bác sĩ</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="footer-link">
-                            <a href="#">GitHub</a>
-                            <a href="#">GitLab</a>
-                            <a href="#">Gmail</a>
-                            <a href="#">Drive</a>
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-sm-2 text-align-center">
-                        <div class="angle-up-btn">
-                            <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i
-                                    class="fa fa-angle-up"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </footer>
-
-    {{-- Modal Form Login --}}
-    <div class="modal fade" id="loginForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Đăng nhập</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Mật khẩu') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                        {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Ghi nhớ lần đăng nhập') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Đăng nhập') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Quên mật khẩu?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
-        </div>
-    </div>
-    {{-- End Login Form --}}
+        </form>
+        <!-- form itself end -->
 
-    {{-- Modal Form Register --}}
-    <div class="modal fade" id="registerForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Đăng kí</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Tên') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email"
-                                class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Mật khẩu') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Nhập lại mật khẩu') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control"
-                                    name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Giới tính') }}</label>
-
-                            <div class="col-md-6">
-                                <select name="gender" class="form-control @error('gender') is-invalid @enderror">
-                                    <option value="">Vui lòng chọn</option>
-                                    <option value="1">Nam</option>
-                                    <option value="0">Nữ</option>
-                                </select>
-                            </div>
-
-                            @error('gender')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-12 text-center offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Đăng kí') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- End Register Form --}}
-
-
-
-    <!-- SCRIPTS -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.sticky.js') }}"></script>
-    <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
-    <script src="{{ asset('js/wow.min.js') }}"></script>
-    <script src="{{ asset('js/smoothscroll.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script>
-        @if(Session::has('messege'))
-        var type = "{{Session::get('alert-type','info')}}"
-        switch (type) {
-            case 'info':
+        <!-- JS here -->
+        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+        <script src="{{ asset('js/vendor/modernizr-3.5.0.min.js') }}"></script>
+        <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
+        <script src="{{ asset('js/popper.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
+        <script src="{{ asset('js/ajax-form.js') }}"></script>
+        <script src="{{ asset('js/waypoints.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+        <script src="{{ asset('js/imagesloaded.pkgd.min.js') }}"></script>
+        <script src="{{ asset('js/scrollIt.js') }}"></script>
+        <script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+        <script src="{{ asset('js/wow.min.js') }}"></script>
+        <script src="{{ asset('js/nice-select.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+        <script src="{{ asset('js/plugins.js') }}"></script>
+        <script src="{{ asset('js/gijgo.min.js') }}"></script>
+        <!--contact js-->
+        <script src="{{ asset('js/contact.js') }}"></script>
+        <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.form.js') }}"></script>
+        <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('js/mail-script.js') }}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+        </script>
+        <script src="{{ asset('js/main.js') }}"></script>
+        <script>
+            @if (Session::has('messege'))
+                var type = "{{ Session::get('alert-type', 'info') }}"
+                switch (type) {
+                case 'info':
                 toastr.info("{{ Session::get('messege') }}");
                 break;
-            case 'success':
+                case 'success':
                 toastr.success("{{ Session::get('messege') }}");
                 break;
-            case 'warning':
+                case 'warning':
                 toastr.warning("{{ Session::get('messege') }}");
                 break;
-            case 'error':
+                case 'error':
                 toastr.error("{{ Session::get('messege') }}");
                 break;
-        }
-        @endif
-    </script>
+                }
+            @endif
+
+        </script>
+    </div>
 </body>
 
 </html>

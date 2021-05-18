@@ -17,9 +17,11 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="ik ik-home"></i></a>
+                            <a href="{{ url('/dashboard') }}"><i class="ik ik-home"></i></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Bác sĩ</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ url('/doctor') }}">Bác sĩ</a>
+                        </li>
                         <li class="breadcrumb-item active" aria-current="page">Update</li>
                     </ol>
                 </nav>
@@ -90,7 +92,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <label for="">Trình độ</label>
                                 <input type="text" name="education"
                                     class="form-control @error('education') is-invalid @enderror"
@@ -101,12 +103,23 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <label for="">Địa chỉ</label>
                                 <input type="text" name="address"
                                     class="form-control @error('address') is-invalid @enderror"
                                     value="{{ $user->address }}">
                                 @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="">Giá khám</label>
+                                <input type="number" name="price"
+                                    class="form-control @error('price') is-invalid @enderror"
+                                    value="{{ $user->price }}">
+                                @error('price')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -177,9 +190,29 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Thông tin chi tiết</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="exampleTextarea1"
+                            <textarea class="ckeditor @error('description') is-invalid @enderror" rows="50" cols="150" id="exampleTextarea1"
                                 rows="4" name="description">{{ $user->description }}</textarea>
                             @error('description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Khám và điều trị</label>
+                            <textarea class="ckeditor @error('treatment') is-invalid @enderror" rows="50" cols="150" id="exampleTextarea1"
+                                rows="4" name="treatment">{{ $user->treatment }}</textarea>
+                            @error('treatment')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleTextarea1">Dịch vụ liên quan</label>
+                            <textarea class="ckeditor @error('service') is-invalid @enderror" rows="50" cols="150" id="exampleTextarea1"
+                                rows="4" name="service">{{ $user->service }}</textarea>
+                            @error('service')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

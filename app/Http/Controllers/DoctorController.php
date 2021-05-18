@@ -15,7 +15,7 @@ class DoctorController extends Controller
     public function index()
     {
     
-        $users  = User::where('role_id','=',1)->get();
+        $users  = User::where('role_id','=',1)->paginate(5);
         return view('admin.doctor.index',compact('users'));
     }
 
@@ -133,6 +133,7 @@ class DoctorController extends Controller
             'education'=>'required',
             'address'=>'required',
             'department'=>'required',
+            'price' => 'required',
             'phone_number'=>'required|numeric',
             'image'=>'required|mimes:jpeg,jpg,png',
             'role_id'=>'required',
@@ -178,7 +179,12 @@ class DoctorController extends Controller
        ]);
     }
    
-
+    public function SearchDoctor(Request $request)
+    {
+        $item = $request->searchDoctor;
+        $users = User::where('role_id','=',1)->where('name','LIKE' ,"%$item%")->paginate(10);
+        return view('admin.doctor.searchdoctor', compact('users', 'item'));
+    }
 
  
 }

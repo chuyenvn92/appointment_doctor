@@ -1,7 +1,10 @@
 <template>
     <div>
         <div class="card">
-            <div class="card-header text-center mb-3">
+            <div
+                class="card-header text-center"
+                style="margin-top: 15px; margin-bottom: 20px;"
+            >
                 <h3>
                     Chọn ngày khám và chọn bác sĩ bạn muốn khám
                 </h3>
@@ -19,18 +22,18 @@
             </div>
             <div class="card mt-5">
                 <div class="card-header text-center">
-                    <h3>
+                    <h3 style="margin-top: 30px; margin-bottom: 28px;">
                         Danh sách các bác sĩ
                     </h3>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Số thứ tự</th>
-                                <th></th>
+                                <th>#</th>
+                                <th>Hình ảnh</th>
                                 <th>Bác sĩ</th>
-                                <th>Chuyên Khoa</th>
+                                <th>Chuyên khoa</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -106,7 +109,7 @@ export default {
         customDate(date) {
             this.loading = true;
 
-            this.time = moment(date).format("DD-MM-YYYY");
+            this.time = moment(date).format("YYYY-MM-DD");
             axios
                 .post("/api/finddoctors", { date: this.time })
                 .then(response => {
@@ -116,12 +119,11 @@ export default {
                     }, 1000);
                 })
                 .catch(error => {
-                    alert("error");
+                    console.log("Ngày tháng bạn chọn không hợp lệ");
                 });
         }
     },
     mounted() {
-        //let time = moment(date).parseZone("Australia/Melbourne");
         this.loading = true;
         axios.get("/api/doctors/today").then(response => {
             this.doctors = response.data;

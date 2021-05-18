@@ -17,10 +17,10 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#"><i class="ik ik-home"></i></a>
+                            <a href="{{ url('/dashboard') }}"><i class="ik ik-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#">Chuyên khoa</a>
+                            <a href="{{ url('/department') }}">Chuyên khoa</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Index</li>
                     </ol>
@@ -39,14 +39,13 @@
             @endif
             <div class="card">
                 <div class="card-body">
-                    <table id="data_table" class="table">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>STT</th>
                                 <th class="nosort">Ảnh</th>
                                 <th>Tên chuyên khoa</th>
-                                <th class="nosort">&nbsp;</th>
-                                <th class="nosort">&nbsp;</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,16 +60,11 @@
                                             <div class="table-actions">
                                                 <a href="{{ route('department.edit', [$department->id]) }}"><i
                                                         class="ik ik-edit-2"></i></a>
-                                                <a>
-                                                    <form action="{{ route('department.destroy', [$department->id]) }}"
-                                                        method="post">@csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"><i class="ik ik-trash-2"></i></button>
-                                                    </form>
+                                                <a href="{{ route('department.show', [$department->id]) }}">
+                                                    <i class="ik ik-trash-2"></i>
                                                 </a>
                                             </div>
                                         </td>
-                                        <td>x</td>
                                     </tr>
                                 @endforeach
                             @else
@@ -79,6 +73,7 @@
 
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">{!! $departments->links() !!}</div>
                 </div>
             </div>
         </div>

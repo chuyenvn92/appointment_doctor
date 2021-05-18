@@ -17,9 +17,11 @@
                 <nav class="breadcrumb-container" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="../index.html"><i class="ik ik-home"></i></a>
+                            <a href="{{ url('/dashboard') }}"><i class="ik ik-home"></i></a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Bác sĩ</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ url('/doctor') }}">Bác sĩ</a>
+                        </li>
                         <li class="breadcrumb-item active" aria-current="page">delete</li>
                     </ol>
                 </nav>
