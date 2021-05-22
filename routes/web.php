@@ -57,6 +57,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
 	Route::resource('doctor','DoctorController');
 	Route::resource('guest','GuestController');
 	Route::post('/doctor/search','DoctorController@SearchDoctor')->name('search.doctor');
+	Route::post('/department/search','DepartmentController@SearchDepartment')->name('search.department');
 	Route::get('/patients/pending','PatientlistController@pending')->name('patient');
 	Route::get('/patients/confirmed','PatientlistController@confirmed')->name('confirmed');
 	Route::get('/patients/done','PatientlistController@doneBooking')->name('doneBooking');
@@ -67,7 +68,6 @@ Route::group(['middleware'=>['auth','admin']],function(){
 
 
 });
-
 Route::group(['middleware'=>['auth','doctor']],function(){
 
 	Route::resource('appointment','AppointmentController');

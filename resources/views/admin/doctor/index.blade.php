@@ -32,8 +32,8 @@
         <form method="POST" role="search" action="{{ route('search.doctor') }}">
             @csrf
             <div class="input-group rounded">
-                <input type="search" class="form-control ml-4 rounded" placeholder="Tìm kiếm bác sĩ" name="searchDoctor" aria-label="Search"
-                    aria-describedby="search-addon" />
+                <input type="search" class="form-control ml-4 rounded" placeholder="Tìm kiếm bác sĩ" name="searchDoctor"
+                    aria-label="Search" aria-describedby="search-addon" />
                 <span class="input-group-text border-0" type="submit" id="search-addon">
                     <i class="fas fa-search"></i>
                 </span>
@@ -72,16 +72,17 @@
                                         <td>{{ $user->phone_number }}</td>
                                         <td>{{ $user->department }}</td>
                                         <td>
-                                            <div class="table-actions">
-                                                <a href="#" data-toggle="modal"
+                                            <div>
+                                                <a class="btn btn-secondary" href="#" data-toggle="modal"
                                                     data-target="#exampleModal{{ $user->id }}">
-                                                    <i class="ik ik-eye"></i>
+                                                    <i class="far fa-eye"></i>Xem
                                                 </a>
-                                                <a href="{{ route('doctor.edit', [$user->id]) }}"><i
-                                                        class="ik ik-edit-2"></i></a>
-
-                                                <a href="{{ route('doctor.show', [$user->id]) }}">
-                                                    <i class="ik ik-trash-2"></i>
+                                                <a class="btn btn-primary"
+                                                    href="{{ route('doctor.edit', [$user->id]) }}">
+                                                    <i class="fas fa-edit"></i>Sửa</a>
+                                                <a class="btn btn-danger"
+                                                    href="{{ route('doctor.show', [$user->id]) }}">
+                                                    <i class="fas fa-trash"></i>Xoá
                                                 </a>
                                             </div>
                                         </td>

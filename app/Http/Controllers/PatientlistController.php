@@ -16,46 +16,72 @@ class PatientlistController extends Controller
     public function pending(Request $request)
     {
     	if($request->date){
-    		$bookings = Booking::latest()->where('date',$request->date)->get();
-    		return view('admin.patientlist.index',compact('bookings'));
+            $date = date('Y-m-d', strtotime($request->date));
+    		$bookings = Booking::where('date',$date)->paginate(10);
+    		return view('admin.patientlist.index',compact('bookings', 'date'));
     	}
-    	$bookings = Booking::latest()->where('status', 0)->get();
-    	return view('admin.patientlist.index',compact('bookings'));
+        $title = 'Lượt đặt khám chưa xác nhận';
+    	$bookings = Booking::where('status', 0)
+                            ->orderBy('date', 'DESC')
+                            ->paginate(10);
+    	return view('admin.patientlist.index',compact('bookings', 'title'));
     }
 
     public function confirmed(Request $request)
     {
     	if($request->date){
-    		$bookings = Booking::latest()->where('date',$request->date)->get();
-    		return view('admin.patientlist.index',compact('bookings'));
+            $date = date('Y-m-d', strtotime($request->date));
+    		$bookings = Booking::where('date',$date)->paginate(10);
+    		return view('admin.patientlist.index',compact('bookings', 'date'));
     	}
-    	$bookings = Booking::latest()->where('status', 1)->get();
-    	return view('admin.patientlist.index',compact('bookings'));
+        $title = 'Lượt đặt khám đã xác nhận';
+    	$bookings = Booking::where('status', 1)
+                            ->orderBy('date', 'DESC')
+                            ->paginate(10);
+    	return view('admin.patientlist.index',compact('bookings', 'title'));
     }
 
     public function doneBooking(Request $request)
     {
     	if($request->date){
-    		$bookings = Booking::latest()->where('date',$request->date)->get();
-    		return view('admin.patientlist.index',compact('bookings'));
+            $date = date('Y-m-d', strtotime($request->date));
+    		$bookings = Booking::where('date',$date)->paginate(10);
+    		return view('admin.patientlist.index',compact('bookings', 'date'));
     	}
-    	$bookings = Booking::latest()->where('status', 3)->get();
-    	return view('admin.patientlist.index',compact('bookings'));
+        $title = 'Lượt đặt đã khám thành công';
+    	$bookings = Booking::where('status', 2)
+                            ->orderBy('date', 'DESC')
+                            ->paginate(10);
+    	return view('admin.patientlist.index',compact('bookings', 'title'));
     }
 
     public function cancelBooking(Request $request)
     {
     	if($request->date){
-    		$bookings = Booking::latest()->where('date',$request->date)->get();
-    		return view('admin.patientlist.index',compact('bookings'));
+            $date = date('Y-m-d', strtotime($request->date));
+    		$bookings = Booking::where('date',$date)->paginate(10);
+    		return view('admin.patientlist.index',compact('bookings', 'date'));
     	}
-    	$bookings = Booking::latest()->where('status', 1)->get();
-    	return view('admin.patientlist.index',compact('bookings'));
+        $title = 'Lượt đặt khám đã bị huỷ';
+    	$bookings = Booking::where('status', 3)
+                            ->orderBy('date', 'DESC')
+                            ->paginate(10);
+    	return view('admin.patientlist.index',compact('bookings', 'title'));
     }
 
-    public function allTimeAppointment()
+    public function allTimeAppointment(Request $request)
     {
-        $bookings = Booking::latest()->get();
+        if($request->date_from && $request->date_to){
+            $date_from = date('Y-m-d', strtotime($request->date_from));
+            $date_to = date('Y-m-d', strtotime($request->date_to));
+    		$bookings = Booking::where('status', 2)
+                                ->whereBetween('date',[$date_from,$date_to])
+                                ->paginate(10);
+    		return view('admin.patientlist.all',compact('bookings', 'date_from', 'date_to'));
+    	}
+        $bookings = Booking::where('status', 2)
+                            ->orderBy('date', 'DESC')
+                            ->paginate(10);
         return view('admin.patientlist.all',compact('bookings'));
     }
 
@@ -73,7 +99,7 @@ class PatientlistController extends Controller
     {
         $bookings =  Booking::where('doctor_id',auth()->user()->id)
                             ->where('status', 0)
-                            ->orderBy('id', 'DESC')
+                            ->orderBy('date', 'DESC')
                             ->get();
 		return view('admin.patient.pendingall',compact('bookings'));
     }
@@ -82,7 +108,7 @@ class PatientlistController extends Controller
     {
         $bookings =  Booking::where('doctor_id',auth()->user()->id)
                             ->where('status', 1)
-                            ->orderBy('id', 'DESC')
+                            ->orderBy('date', 'DESC')
                             ->get();
 		return view('admin.patient.confirmed',compact('bookings'));
     }
@@ -91,7 +117,7 @@ class PatientlistController extends Controller
     {
         $bookings =  Booking::where('doctor_id',auth()->user()->id)
                             ->where('status', 3)
-                            ->orderBy('id', 'DESC')
+                            ->orderBy('date', 'DESC')
                             ->get();
 		return view('admin.patient.cancel',compact('bookings'));
     }
@@ -150,7 +176,7 @@ class PatientlistController extends Controller
         $count =  Booking::where('doctor_id',auth()->user()->id)->get();
         $bookings =  Booking::where('doctor_id',auth()
                             ->user()->id)
-                            ->orderBy('id', 'DESC')
+                            ->orderBy('date', 'DESC')
                             ->paginate(5);
 		return view('admin.patient.all',compact('bookings', 'count'));
     }

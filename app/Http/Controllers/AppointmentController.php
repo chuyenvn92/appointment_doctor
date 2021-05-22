@@ -15,7 +15,9 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $myappointments = Appointment::where('user_id',auth()->user()->id)->orderBy('id', 'DESC')->paginate(10);
+        $myappointments = Appointment::where('user_id',auth()->user()->id)
+                                        ->orderBy('date', 'DESC')
+                                        ->paginate(10);
         $all = Appointment::where('user_id',auth()->user()->id)->get();
         
         return view('admin.appointment.index',compact('myappointments', 'all'));
@@ -109,7 +111,7 @@ class AppointmentController extends Controller
 
     public function check(Request $request){
 
-        $date = $request->date;
+        $date = date('Y-m-d', strtotime($request->date));
         $appointment= Appointment::where('date', $date)->where('user_id',auth()->user()->id)->first();
         if(!$appointment){
             return redirect()->to('/appointment')->with('errmessage','Không có lịch khám cho ngày bạn chọn');

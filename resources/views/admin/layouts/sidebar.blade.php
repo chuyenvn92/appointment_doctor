@@ -78,11 +78,11 @@
                             <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Thống kê đặt khám</span>
                                 <span class="badge badge-danger"></span></a>
                             <div class="submenu-content">
-                                <a href="{{ route('patient') }}" class="menu-item">Lịch đặt mới</a>
+                                <a href="{{ route('patient') }}" class="menu-item">Lịch đặt chưa xác nhận</a>
                                 <a href="{{ route('confirmed') }}" class="menu-item">Lịch đặt đã xác nhận</a>
                                 <a href="{{ route('doneBooking') }}" class="menu-item">Lịch đặt đã khám</a>
                                 <a href="{{ route('cancelBooking') }}" class="menu-item">Lịch đặt bị huỷ</a>
-                                <a href="{{ route('all.appointments') }}" class="menu-item">Tổng lượt đặt</a>
+                                <a href="{{ route('all.appointments') }}" class="menu-item">Thống kê lượt đặt thành công</a>
 
                             </div>
                         </div>

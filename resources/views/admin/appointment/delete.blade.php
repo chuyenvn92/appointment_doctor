@@ -42,7 +42,7 @@
                     <h3>Xác nhận xoá</h3>
                 </div>
                 <div class="card-body">
-                    <h2>Lịch hẹn khám ngày {{ $appointment->date }}</h2>
+                    <h2>Lịch hẹn khám ngày {{ date('d-m-Y', strtotime($appointment->date)) }}</h2>
                     <form class="forms-sample" action="{{ route('appointment.destroy', [$appointment->id]) }}" method="post">@csrf
                         @method('DELETE')
 

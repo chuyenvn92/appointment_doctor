@@ -107,4 +107,11 @@ class DepartmentController extends Controller
        }
         return redirect()->route('department.index')->with('message','Xoá chuyên khoa thành công');
     }
+
+    public function SearchDepartment(Request $request)
+    {
+        $item = $request->searchDepartment;
+        $results = Department::where('name_department','LIKE' ,"%$item%")->paginate(10);
+        return view('admin.department.searchdepartment', compact('results', 'item'));
+    }
 }

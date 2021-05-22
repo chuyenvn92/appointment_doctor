@@ -59,7 +59,8 @@
                                     <label>Ảnh chuyên khoa</label>
                                     <input type="file"
                                         class="form-control file-upload-info @error('image') is-invalid @enderror"
-                                        placeholder="Upload Image" name="image">
+                                        placeholder="Upload Image" name="image" onchange="readURL(this);">
+                                    <img src="{{ asset('images') }}/{{ $department->image }}" style="width: 150px; height: 150px;" id="one">
                                     <span class="input-group-append">
                                     </span>
                                     @error('image')
@@ -89,6 +90,20 @@
         </div>
     </div>
     </div>
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#one')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
+    </script>
 
 @endsection

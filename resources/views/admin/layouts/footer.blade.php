@@ -30,18 +30,17 @@
  <script type="text/javascript">
      $(document).ready(function() {
          $("#datepicker").datetimepicker({
-             format: 'YYYY-MM-DD'
+             format: 'DD-MM-YYYY',
          });
-        //  var d = new Date();
-
-        //  var month = d.getMonth() + 1;
-        //  var day = d.getDate();
-
-        //  var output = (day < 10 ? '0' : '') + day + '-' +
-        //      (month < 10 ? '0' : '') + month + '-' +
-        //      d.getFullYear();
-
-        //  $("#datepicker").val(output);
+         $("#datepicker_appointment").datetimepicker({
+             format: 'YYYY-MM-DD',
+         });
+         $("#date_from").datetimepicker({
+             format: 'DD-MM-YYYY'
+         });
+         $("#date_to").datetimepicker({
+             format: 'DD-MM-YYYY'
+         });
      })
 
  </script>

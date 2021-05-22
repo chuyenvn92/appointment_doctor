@@ -1,6 +1,32 @@
 @extends('admin.layouts.master')
 @section('content')
     <div class="container">
+        <div class="page-header">
+            <div class="row align-items-end">
+                <div class="col-lg-8">
+                    <div class="page-header-title">
+                        <i class="ik ik-inbox bg-blue"></i>
+                        <div class="d-inline">
+                            <h5>Lịch đặt chờ xác nhận trong ngày {{ date('d-m-Y') }}</h5>
+                            <span>Số lượt: ({{ $bookings->count() }})</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <nav class="breadcrumb-container" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{{ url('/dashboard') }}"><i class="ik ik-home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{{ url('/patients/all') }}">Lịch đặt</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Index</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 @if (Session::has('message'))
@@ -63,7 +89,7 @@
                                                         <input type="hidden" name="date" value="{{ $booking->date }}">
                                                         <input type="hidden" name="user_email"
                                                             value="{{ $booking->user->email }}">
-                                                        <button type="submit" class="btn btn-primary">Xác nhận khám</button>
+                                                        <button type="submit" class="btn btn-primary mr-1">Xác nhận khám</button>
                                                     </form>
                                                     <form action="{{ route('ignore.booking') }}" method="post">
                                                         @csrf
@@ -76,16 +102,18 @@
                                                         <input type="hidden" name="date" value="{{ $booking->date }}">
                                                         <input type="hidden" name="user_email"
                                                             value="{{ $booking->user->email }}">
-                                                        <button type="submit" class="btn btn-danger">Huỷ</button>
+                                                        <button type="submit" class="btn btn-danger mr-1">Huỷ</button>
                                                     </form>
-                                                    <a href="#" data-toggle="modal"
+                                                    <a class="btn btn-secondary" href="#" data-toggle="modal"
                                                         data-target="#exampleModal{{ $booking->id }}">
-                                                        <i class="ik ik-eye"></i>
+                                                        <i class="far fa-eye"></i>
                                                     </a>
                                                 </div>
                                             @endif
                                         </td>
                                     </tr>
+                                    <!-- View Modal -->
+                                    @include('admin.patient.model')
                                 @empty
                                     <td>Không tìm thấy lịch hẹn khám nào</td>
                                 @endforelse

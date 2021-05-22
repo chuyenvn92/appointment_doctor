@@ -48,7 +48,8 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="">Tên chuyên khoa</label>
-                                    <input type="text" name="name_department" class="form-control @error('name_department') is-invalid @enderror"
+                                    <input type="text" name="name_department"
+                                        class="form-control @error('name_department') is-invalid @enderror"
                                         placeholder="Tên chuyên khoa" value="{{ old('name_department') }}">
                                     @error('name_department')
                                         <span class="invalid-feedback" role="alert">
@@ -60,9 +61,10 @@
                                     <label>Ảnh chuyên khoa</label>
                                     <input type="file"
                                         class="form-control file-upload-info @error('image') is-invalid @enderror"
-                                        placeholder="Upload Image" name="image">
+                                        placeholder="Upload Image" name="image" onchange="readURL(this);">
                                     <span class="input-group-append">
                                     </span>
+                                    <img src="#" id="one">
                                     @error('image')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -91,5 +93,22 @@
     </div>
     </div>
 
+    <script type="text/javascript">
+        document.getElementById('one').style.display = 'none';
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                $('#one').show();
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#one')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
 
 @endsection

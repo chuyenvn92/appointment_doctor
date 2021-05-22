@@ -14,7 +14,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        $guests = Guest::get();
+        $guests = Guest::orderBy('date', 'DESC')
+                        ->paginate(5);
         return view('admin.guest.index', compact('guests'));
     }
 

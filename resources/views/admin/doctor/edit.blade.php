@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label for="">Trình độ</label>
                                 <input type="text" name="education"
                                     class="form-control @error('education') is-invalid @enderror"
@@ -103,7 +103,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <label for="">Địa chỉ</label>
                                 <input type="text" name="address"
                                     class="form-control @error('address') is-invalid @enderror"
@@ -114,19 +114,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="col-lg-4">
-                                <label for="">Giá khám</label>
-                                <input type="number" name="price"
-                                    class="form-control @error('price') is-invalid @enderror"
-                                    value="{{ $user->price }}">
-                                @error('price')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
                         </div>
-
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -160,20 +148,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Ảnh</label>
-                                    <input type="file"
-                                        class="form-control file-upload-info @error('image') is-invalid @enderror"
-                                        placeholder="Upload Image" name="image">
-                                    <span class="input-group-append">
+                            <div class="col-lg-6">
+                                <label for="">Giá khám</label>
+                                <input type="number" name="price" class="form-control @error('price') is-invalid @enderror"
+                                    value="{{ $user->price }}">
+                                @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
                                     </span>
-                                    @error('image')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <label>Vai trò</label>
@@ -188,10 +171,31 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Ảnh</label>
+                                    <input type="file"
+                                        class="form-control file-upload-info @error('image') is-invalid @enderror"
+                                        placeholder="Upload Image" name="image" onchange="readURL(this);">
+                                    <span class="input-group-append">
+                                    </span>
+                                    @error('image')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ asset('images') }}/{{ $user->image }}"
+                                    style="width: 150px; height: 150px;" id="one">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Thông tin chi tiết</label>
-                            <textarea class="ckeditor @error('description') is-invalid @enderror" rows="50" cols="150" id="exampleTextarea1"
-                                rows="4" name="description">{{ $user->description }}</textarea>
+                            <textarea class="ckeditor @error('description') is-invalid @enderror" rows="50" cols="150"
+                                id="exampleTextarea1" rows="4" name="description">{{ $user->description }}</textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -200,8 +204,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Khám và điều trị</label>
-                            <textarea class="ckeditor @error('treatment') is-invalid @enderror" rows="50" cols="150" id="exampleTextarea1"
-                                rows="4" name="treatment">{{ $user->treatment }}</textarea>
+                            <textarea class="ckeditor @error('treatment') is-invalid @enderror" rows="50" cols="150"
+                                id="exampleTextarea1" rows="4" name="treatment">{{ $user->treatment }}</textarea>
                             @error('treatment')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -210,8 +214,8 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Dịch vụ liên quan</label>
-                            <textarea class="ckeditor @error('service') is-invalid @enderror" rows="50" cols="150" id="exampleTextarea1"
-                                rows="4" name="service">{{ $user->service }}</textarea>
+                            <textarea class="ckeditor @error('service') is-invalid @enderror" rows="50" cols="150"
+                                id="exampleTextarea1" rows="4" name="service">{{ $user->service }}</textarea>
                             @error('service')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -225,6 +229,20 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#one')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
+    </script>
 
 @endsection

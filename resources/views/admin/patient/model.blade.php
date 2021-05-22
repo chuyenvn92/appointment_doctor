@@ -13,13 +13,11 @@
                     <img src="{{ asset('profile') }}/{{ $booking->user->image }}" class="table-user-thumb"
                         alt="chưa có ảnh" width="200">
                 </p>
-                <p>Bác sĩ: {{ $booking->doctor->name }} <br>
-                    <img src="{{ asset('images') }}/{{ $booking->doctor->image }}" class="table-user-thumb" alt=""
-                        width="200">
-                </p>
                 <p>Chuyên khoa: {{ $booking->doctor->department }}</p>
                 <p>Ngày khám: {{ date('d-m-Y', strtotime($booking->date)) }}</p>
-                <p>Thời gian: {{ $booking->time }}</p>
+                <p>Thời gian:
+                    <span class="badge badge-pink">{{ $booking->time }}</span>
+                </p>
                 <p>Trạng thái:
                     @if ($booking->status == 0)
                         <span class="btn btn-warning">Chờ xác nhận</span>
@@ -32,9 +30,8 @@
                     @endif
                 </p>
                 @if ($booking->date < date('Y-m-d'))
-                <b>Đã quá thời gian xác nhận lịch hẹn</b>
+                    <b>Đã quá thời gian xác nhận lịch hẹn</b>
                 @else
-
                 @endif
             </div>
             <div class="modal-footer">
