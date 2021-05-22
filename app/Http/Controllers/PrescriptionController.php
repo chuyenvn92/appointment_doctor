@@ -9,13 +9,18 @@ class PrescriptionController extends Controller
 {
     public function index()
     {
-		$bookings =  Booking::where('date',date('Y-m-d'))->where('status',2)->where('doctor_id',auth()->user()->id)->get();
+		$bookings =  Booking::where('date',date('Y-m-d'))
+                          ->where('status',2)
+                          ->where('doctor_id',auth()->user()->id)
+                          ->get();
 		return view('admin.prescription.index',compact('bookings'));
     }
 
     public function notPrescribed()
     {
-		$bookings =  Booking::where('status',2)->where('doctor_id',auth()->user()->id)->get();
+		$bookings =  Booking::where('status',2)
+                          ->where('doctor_id',auth()->user()->id)
+                          ->get();
 		return view('admin.prescription.notprescribed',compact('bookings'));
     }
    
@@ -37,7 +42,7 @@ class PrescriptionController extends Controller
     //get all patients from prescription table
     public function patientsFromPrescription()
     {
-        $patients = Prescription::orderBy('id', 'DESC')->get();
+        $patients = Prescription::orderBy('date', 'DESC')->get();
         return view('admin.prescription.all',compact('patients'));
     }
 
