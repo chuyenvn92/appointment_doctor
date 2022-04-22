@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="{{ public_path('css/bootstrap.min.css') }}" type="text/css">
 
-    <title>Đơn thuốc</title>
+    <title>Đơn thuốc test</title>
     <meta charset="UTF-8">
     <style>
         body {
